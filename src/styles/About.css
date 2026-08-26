@@ -1,0 +1,87 @@
+/* src/styles/About.css */
+/* ============================================================
+   About (home) — full-bleed background photo, blurred just enough
+   to stay a soft, gently-visible wash of colour/light behind the
+   centered text (not sharp, not fully hidden), matching the same
+   centered header rhythm used in Services/Blogs elsewhere on the
+   page. Height is content-driven (no viewport-height min-height),
+   so there's no dead air on tall/laptop screens.
+   ============================================================ */
+.about{position:relative;overflow:hidden;
+  padding-top:clamp(64px,9vw,104px);padding-bottom:clamp(64px,9vw,104px)}
+
+.about__bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.about__bgpic{position:absolute;inset:0;display:block}
+/* No blur at all now — the photo, including faces, is fully sharp.
+   The scrim below is the only thing doing the legibility work. */
+.about__bgpic img{width:100%;height:100%;object-fit:cover;object-position:center;
+  filter:saturate(1.08);transition:filter .6s ease}
+
+/* Two-layer scrim: a soft full-width wash keeps the text column readable
+   over ANY photo during the crossfade, topped with a stronger radial glow
+   centred on the words — while the photo (face included) stays visible
+   at the edges of the section. */
+.about__scrim{position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(ellipse 52% 68% at 50% 44%,
+      rgba(252,251,255,.86) 0%,
+      rgba(252,251,255,.68) 32%,
+      rgba(240,237,252,.34) 56%,
+      rgba(240,237,252,.12) 76%,
+      rgba(240,237,252,0) 100%),
+    linear-gradient(180deg, rgba(252,251,255,.4) 0%, rgba(252,251,255,.14) 22%, rgba(252,251,255,.14) 78%, rgba(252,251,255,.4) 100%)}
+
+.about__grid{position:relative;z-index:2}
+
+/* ---------- intro text — one clean, centred column ---------- */
+.about__intro{max-width:640px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center}
+.about__intro .eyebrow{display:inline-flex;align-items:center;gap:10px;
+  text-shadow:0 1px 14px rgba(255,255,255,.85), 0 1px 2px rgba(255,255,255,.95)}
+
+/* Two-tone heading — italic green first clause, bold violet second clause.
+   Same soft white halo as the paragraphs below, so it stays just as
+   legible against the photo instead of fading into it. */
+.about__title{font-size:clamp(1.95rem,3.4vw,2.9rem);margin:16px 0 20px;line-height:1.18;text-align:center}
+.about__title-green{color:var(--lime-deep);font-style:italic;
+  text-shadow:0 1px 16px rgba(255,255,255,.85), 0 1px 3px rgba(255,255,255,.95)}
+.about__title-violet{color:var(--indigo-deep);font-weight:600;
+  text-shadow:0 1px 16px rgba(255,255,255,.85), 0 1px 3px rgba(255,255,255,.95)}
+
+.about__lede{
+  font-family:var(--sans);font-weight:500;text-align:center;
+  font-size:clamp(1.04rem,1.2vw,1.16rem);line-height:1.85;
+  color:#352A56;max-width:56ch;margin-left:auto;margin-right:auto;letter-spacing:.15px;
+  text-shadow:0 1px 16px rgba(255,255,255,.8), 0 1px 3px rgba(255,255,255,.9);
+}
+.about__brand{
+  font-family:var(--serif);font-style:italic;font-weight:600;
+  font-size:1.1em;color:var(--indigo-deep);letter-spacing:.2px;
+}
+.about__lede--2{margin-top:14px}
+.about__lede em{font-style:italic;color:var(--indigo);font-weight:500}
+.about__actions{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:30px}
+
+/* premium hover lift on the two CTAs (in addition to the global .btn states) */
+.about__actions .btn{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,background .3s}
+.about__actions .btn svg{transition:transform .3s ease}
+.about__actions .btn:hover svg{transform:translateX(4px)}
+
+/* ============================================================
+   Responsive — fluid at every step so zooming in/out or resizing
+   never clips text, overlaps the image, or breaks the layout.
+   ============================================================ */
+@media(max-width:900px){
+  .about__intro{max-width:560px}
+}
+
+@media(max-width:560px){
+  .about{padding-top:56px;padding-bottom:56px}
+  .about__title{font-size:clamp(1.8rem,7.6vw,2.2rem);margin:12px 0 16px}
+  .about__lede{font-size:1rem;line-height:1.8}
+}
+
+@media(max-width:360px){
+  .about__title{font-size:1.65rem}
+  .about__lede{font-size:.94rem}
+  .about__actions{gap:10px}
+}

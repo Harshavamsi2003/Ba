@@ -1,0 +1,86 @@
+/* src/styles/WellnessJourney.css */
+.wj{position:relative}
+
+/* ---- Intro ---- */
+/* Flat, single background colour all the way through intro + programs —
+   no diagonal gradient, no per-card tint, so there's no stray "shading"
+   anywhere in this section. */
+.wj-intro{background:#fff;padding:clamp(52px,6.5vw,88px) 0 0;overflow:hidden}
+.wj-intro__head{max-width:700px;margin-bottom:0}
+.wj-intro__title{font-size:clamp(2.1rem,4.4vw,3.1rem);margin:14px 0 16px;line-height:1.16;font-family:var(--serif)}
+.wj-intro__title-green{color:var(--lime-deep);font-style:italic}
+.wj-intro__title-violet{color:var(--indigo-deep);font-weight:600}
+.wj-intro__head p{color:var(--muted);margin:0 auto}
+
+/* ---- Programs ---- */
+.wj-programs{background:#fff;padding:clamp(24px,3.2vw,32px) 0 clamp(48px,6vw,80px);overflow:hidden}
+.wj-programs__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.2vw,24px)}
+
+/* alternate the title tone per card — violet on odd, green on even */
+.wj-programs__grid .wj-program:nth-child(odd){--tone:var(--indigo-deep)}
+.wj-programs__grid .wj-program:nth-child(even){--tone:var(--lime-deep)}
+
+.wj-program{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:clamp(28px,3.4vw,36px) clamp(20px,2.6vw,26px);text-align:center;
+  position:relative;overflow:hidden;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.wj-program::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--indigo),var(--lime));transform:scaleX(0);transform-origin:left;transition:transform .45s}
+.wj-program:hover{transform:translateY(-8px);box-shadow:var(--shadow-soft)}
+.wj-program:hover::before{transform:scaleX(1)}
+.wj-program .icon-badge{margin:0 auto 16px}
+.wj-program h4{font-size:clamp(1.08rem,1.6vw,1.24rem);color:var(--tone);margin-bottom:8px;transition:color .3s ease}
+.wj-program p{font-size:clamp(.82rem,1vw,.86rem);color:var(--muted);line-height:1.6}
+
+/* ---- Journey ---- */
+/* ---- Journey (LIGHT lavender band) ---- */
+.wj-journey{background:linear-gradient(165deg,#F1EDFC,#E7E1F9);color:var(--charcoal);overflow:hidden;padding:clamp(52px,6.5vw,88px) 0}
+.wj-journey::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 82% 12%,rgba(198,218,0,.16),transparent 48%),radial-gradient(circle at 6% 92%,rgba(130,113,224,.14),transparent 55%)}
+.wj-journey .head-center{margin-bottom:clamp(34px,4vw,52px)}
+.wj-journey .head-center h3{font-size:clamp(1.9rem,3.8vw,2.7rem)}
+.wj-journey__track{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;position:relative}
+.wj-journey__line{position:absolute;top:64px;left:9%;right:9%;height:2px;transform-origin:left center;
+  background:linear-gradient(90deg,rgba(143,160,0,.25),rgba(143,160,0,.55),rgba(143,160,0,.25))}
+.wj-step{text-align:center;position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+
+/* Step indicator — small editorial "Step 0X" tag above the icon,
+   alternating the two brand tones per step. */
+.wj-step__tag{font-family:var(--sans);font-weight:600;font-size:.66rem;letter-spacing:1.6px;text-transform:uppercase;
+  color:var(--indigo);margin-bottom:10px;transition:transform .3s ease}
+.wj-step:nth-child(even) .wj-step__tag{color:var(--lime-deep)}
+.wj-step:hover .wj-step__tag{transform:translateY(-2px)}
+
+.wj-step .icon-badge{margin:0 auto 16px;position:relative}
+/* soft dashed ring that appears + gently rotates around the icon on hover —
+   uses the icon's own two-tone colours */
+.wj-step .icon-badge--journey::after{content:"";position:absolute;inset:-9px;border-radius:50%;
+  border:1.5px dashed var(--ring2);opacity:0;transition:opacity .5s ease;
+  animation:wj-ring-spin 16s linear infinite;animation-play-state:paused}
+.wj-step:hover .icon-badge--journey::after{opacity:.6;animation-play-state:running}
+@keyframes wj-ring-spin{to{transform:rotate(360deg)}}
+
+.wj-step h4{font-size:1.06rem;color:var(--indigo-deep);margin-bottom:6px}
+.wj-step p{font-size:.79rem;color:var(--muted);line-height:1.5}
+
+@media(prefers-reduced-motion:reduce){
+  .wj-step .icon-badge--journey::after{animation:none}
+}
+
+@media(max-width:1080px){
+  .wj-programs__grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  .wj-journey__track{grid-template-columns:repeat(3,1fr);gap:38px 18px}
+  .wj-journey__line{display:none}
+}
+@media(max-width:600px){
+  .wj-programs__grid{grid-template-columns:1fr;gap:16px}
+  .wj-program{padding:26px 20px;border-radius:16px}
+  .wj-program h4{font-size:1.05rem;line-height:1.2}
+  .wj-program p{font-size:.8rem;line-height:1.55}
+  .wj-journey__track{grid-template-columns:repeat(2,1fr);gap:30px 14px}
+  .wj-step h4{font-size:.9rem}
+  .wj-step p{font-size:.75rem}
+  .wj-step__tag{font-size:.6rem;letter-spacing:1.3px}
+}

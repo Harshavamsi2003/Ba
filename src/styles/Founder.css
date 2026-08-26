@@ -1,0 +1,63 @@
+/* src/styles/Founder.css */
+.founder-page{padding-top:74px}
+
+/* ---- Hero split ---- */
+.fd-hero{background:linear-gradient(180deg,var(--cream),var(--ivory));padding:clamp(40px,6vw,72px) 0 clamp(48px,6vw,80px)}
+.fd-hero__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,5vw,64px);align-items:center}
+.fd-hero__media{max-width:400px;margin:0 auto}
+/* Clean, minimal frame — no decorative blob/circle shapes behind it,
+   no heavy shadow. Just the photo, presented simply and premium. */
+.fd-hero__photo{aspect-ratio:4/5;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:var(--cream)}
+.fd-hero__photo img{width:100%;height:100%;object-fit:cover}
+.fd-hero__caption{margin-top:18px;text-align:center;font-family:var(--serif);font-style:italic;
+  font-size:1.02rem;color:var(--indigo-deep);letter-spacing:.2px}
+
+.fd-back{display:flex;width:max-content;align-items:center;gap:8px;font-size:.82rem;font-weight:500;letter-spacing:.4px;
+  color:var(--indigo);margin-bottom:18px;transition:gap .3s,color .3s}
+.fd-back svg{width:17px;height:17px}
+.fd-back:hover{gap:12px;color:var(--indigo-deep)}
+.fd-name{font-size:clamp(2.1rem,4.6vw,3.1rem);margin-top:12px;line-height:1.08}
+.fd-name span{display:block;font-family:var(--sans);font-weight:500;font-size:.92rem;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--lime-deep);margin-top:12px}
+.fd-roles{font-family:var(--serif);font-size:1.15rem;font-style:italic;color:var(--indigo-deep);margin-top:12px}
+.fd-quals{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px;list-style:none;padding:0}
+.fd-quals li{font-size:.76rem;font-weight:500;letter-spacing:.4px;color:var(--indigo);
+  background:var(--indigo-tint);padding:6px 14px;border-radius:20px;white-space:nowrap}
+.fd-bio{color:var(--muted);margin-top:20px;line-height:1.85}
+.fd-quote{margin:24px 0;padding:14px 0 14px 22px;border-left:3px solid var(--lime);
+  font-family:var(--serif);font-size:1.28rem;font-style:italic;color:var(--indigo-deep);line-height:1.5}
+.fd-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
+
+/* ---- Story ---- */
+.fd-story__cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3.4vw,40px)}
+.fd-story__col{padding-top:22px;border-top:2px solid var(--indigo)}
+.fd-story__col:nth-child(even){border-top-color:var(--lime-deep)}
+.fd-story__col p{color:var(--muted);line-height:1.85}
+
+/* ---- Highlights ---- */
+.fd-high{background:linear-gradient(180deg,var(--ivory),var(--cream));padding:clamp(52px,6.5vw,88px) 0}
+.fd-high__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.fd-high__card{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:30px 26px;overflow:hidden;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.fd-high__card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--indigo)}
+.fd-high__card:nth-child(even)::before{background:var(--lime-deep)}
+.fd-high__card:hover{transform:translateY(-6px);box-shadow:var(--shadow-soft)}
+.fd-high__card h4{font-size:1.16rem;margin-bottom:8px;color:var(--indigo-deep)}
+.fd-high__card:nth-child(even) h4{color:var(--lime-deep)}
+.fd-high__card p{font-size:.9rem;color:var(--muted);line-height:1.6}
+
+/* ---- CTA ---- */
+.fd-cta{background:linear-gradient(165deg,#F1EDFC,#E7E1F9);text-align:center;padding:clamp(60px,8vw,100px) 0}
+.fd-cta__inner h2{font-size:clamp(2rem,4vw,2.9rem);margin-bottom:14px}
+.fd-cta__inner p{color:var(--muted);max-width:520px;margin:0 auto 28px}
+.fd-cta__actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+@media(max-width:900px){
+  .fd-hero__grid{grid-template-columns:1fr;gap:40px}
+  .fd-hero__media{max-width:340px}
+  .fd-story__cols{grid-template-columns:1fr;gap:24px}
+  .fd-high__grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  .fd-high__grid{grid-template-columns:1fr}
+}

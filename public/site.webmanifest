@@ -1,0 +1,11 @@
+{
+  "name": "Baby Blossom Naturopathy Fertility & Wellness Clinic",
+  "short_name": "Baby Blossom",
+  "icons": [
+    { "src": "/favicon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "theme_color": "#5A48C6",
+  "background_color": "#FBFAFF",
+  "display": "standalone"
+}

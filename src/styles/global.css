@@ -1,0 +1,175 @@
+:root{
+  /* ============ BRAND PALETTE — LIGHT shades of the logo colours ============
+     The logo purple (#3C2A98) is very dark, so it's used only for text &
+     thin accents. Large areas use soft, light tints of the same hue. */
+  --indigo:#5A48C6;          /* primary — buttons, links, rings (lighter violet) */
+  --indigo-deep:#4A3AA8;     /* headings on light — readable, still soft */
+  --indigo-ink:#3C2E86;      /* rare deep accent text only */
+  --indigo-soft:#8271E0;     /* soft violet accent */
+  --violet-glyph:#6A57CE;    /* icon glyph colour — a light shade of the logo */
+  --indigo-tint:#F0EDFC;     /* very pale lavender disc / band */
+  --indigo-tint2:#E7E1F9;    /* pale lavender 2 */
+  --lavender-band:#F1EDFC;   /* light band background (replaces old dark bands) */
+  --lavender-band2:#E7E1F9;
+
+  --lime:#C6DA00;            /* logo lime — accent */
+  --lime-deep:#8FA000;       /* legible lime for small text / accents */
+  --lime-tint:#F4F7DA;       /* pale lime disc */
+
+  --heart:#E32C2E;           /* logo heart — tiny love accents only */
+  --heart-soft:#FCE7E7;
+
+  /* Neutrals — soft & cool to keep everything light */
+  --ivory:#FCFBFF;
+  --cream:#F5F2FC;
+  --charcoal:#382E58;        /* body text — softened plum, not near-black */
+  --ink:#382E58;
+  --muted:#7B7597;
+  --line:rgba(90,72,198,.15);
+
+  /* ---- Legacy aliases remapped to the light brand system ---- */
+  --pink-soft:var(--indigo-tint);
+  --rose:var(--indigo);
+  --rose-deep:var(--indigo-deep);
+  --rose-ink:var(--indigo-deep);
+  --sage:var(--lime-deep);
+  --olive:var(--indigo-deep);
+  --lavender:var(--indigo-tint2);
+  --gold:var(--lime-deep);
+
+  --serif:'Cormorant Garamond', Georgia, serif;
+  --sans:'Jost', system-ui, sans-serif;
+  --shadow-soft:0 18px 44px rgba(90,72,198,.13);
+  --shadow-rose:0 16px 34px rgba(90,72,198,.24);
+  --shadow-lime:0 14px 30px rgba(143,160,0,.28);
+  --maxw:1240px;
+  --radius:20px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+/* Fluid root font-size: every rem-based size (typography, many gaps) now
+   scales smoothly between small and large screens — and reflows gracefully
+   when the user zooms in/out. This is the backbone of the responsive system. */
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-size:clamp(14.5px,0.5vw + 12.8px,16.5px)}
+body{
+  background:var(--ivory);color:var(--charcoal);
+  font-family:var(--sans);font-weight:300;line-height:1.75;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.14;letter-spacing:.3px;color:var(--indigo-deep)}
+a{color:inherit;text-decoration:none}
+p,a,span,li,b,h1,h2,h3,h4{overflow-wrap:break-word}
+img,svg,video{display:block;max-width:100%;height:auto}
+ul{list-style:none}
+section{position:relative}
+section[id]{scroll-margin-top:86px}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,4vw,36px)}
+.eyebrow{font-family:var(--sans);font-weight:600;letter-spacing:3.5px;text-transform:uppercase;font-size:.78rem;color:var(--indigo)}
+.eyebrow--lg{font-size:.95rem;letter-spacing:4px}
+.section-pad{padding:clamp(52px,6.5vw,88px) 0}
+
+/* signature divider — indigo → lime */
+.divider{width:66px;height:2px;background:linear-gradient(90deg,transparent,var(--indigo),var(--lime),transparent);margin:18px auto;border-radius:2px}
+.divider.on-dark{background:linear-gradient(90deg,transparent,var(--lime),rgba(255,255,255,.6),transparent)}
+.divider.on-cream{background:linear-gradient(90deg,transparent,var(--indigo),var(--lime),transparent)}
+
+.head-center{text-align:center;max-width:660px;margin:0 auto clamp(40px,6vw,64px)}
+.head-center h2{font-size:clamp(2.1rem,4.4vw,3.25rem);margin-top:14px}
+.head-center p{color:var(--muted);margin-top:14px}
+
+/* ============ UNIFORM two-tone heading system ============
+   Every primary headline on the site (page h1s and top-level section
+   h2s) uses this exact pair: first clause in italic green, second in
+   bold violet. Nested sub-headings (h3 inside an already two-toned
+   section) stay single-colour so the hierarchy reads clearly. */
+.split-green{color:var(--lime-deep);font-style:italic}
+.split-violet{color:var(--indigo-deep);font-weight:600}
+
+/* ============ buttons ============ */
+.btn{font-family:var(--sans);font-weight:500;letter-spacing:1px;font-size:.82rem;
+  padding:15px 30px;border-radius:40px;border:none;cursor:pointer;display:inline-flex;
+  align-items:center;gap:10px;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,background .3s,color .3s;white-space:nowrap}
+.btn svg{width:17px;height:17px}
+.btn-primary{background:var(--indigo);color:#fff}
+.btn-primary:hover{background:var(--indigo-deep);transform:translateY(-3px);box-shadow:var(--shadow-rose)}
+.btn-ghost{background:rgba(255,255,255,.72);color:var(--indigo);border:1px solid rgba(60,42,152,.32)}
+.btn-ghost:hover{background:#fff;color:var(--indigo-deep);transform:translateY(-3px);box-shadow:var(--shadow-soft)}
+.btn-olive{background:var(--indigo-deep);color:#fff}
+.btn-olive:hover{background:var(--indigo-ink);transform:translateY(-3px);box-shadow:0 16px 30px rgba(42,29,107,.35)}
+/* fresh lime accent button */
+.btn-lime{background:var(--lime);color:var(--indigo-ink);font-weight:600}
+.btn-lime:hover{background:#d3e600;transform:translateY(-3px);box-shadow:var(--shadow-lime)}
+
+/* ============================================================
+   ICON SYSTEM — white disc + DOUBLE ring (the wellness/journey look)
+   • White disc, a solid inner ring + a second outer ring (double border)
+   • Glyph is a CSS mask filled flat with the tone colour (no shading)
+   • Tones ALTERNATE purple / green per item → every icon reads unique
+   • Each SECTION gets its own double-border variation
+   ============================================================ */
+.icon-badge{position:relative;display:grid;place-items:center;border-radius:50%;flex-shrink:0;
+  background:#fff;
+  box-shadow:0 0 0 2px var(--ring), 0 0 0 4px #fff, 0 0 0 5.5px var(--ring-o), 0 12px 26px rgba(90,72,198,.14);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s}
+.icon-glyph{display:block;width:46%;height:46%;background:var(--glyph);
+  -webkit-mask-repeat:no-repeat;-webkit-mask-position:center;-webkit-mask-size:contain;
+  mask-repeat:no-repeat;mask-position:center;mask-size:contain}
+
+/* the two brand tones (flat, unmixed): inner ring + outer ring + glyph.
+   --ring2 is the COMPLEMENTARY tone, used only by the wellness/journey
+   badges below so their double border reads as two different colours
+   (violet + green) rather than the same colour twice. */
+.icon-badge{--ring:#6A57CE;--ring-o:#C6BCF4;--ring2:#8FA000;--glyph:#5A48C6}            /* default purple */
+.tone-purple,.icon-badge.tone-purple{--ring:#6A57CE;--ring-o:#C6BCF4;--ring2:#8FA000;--glyph:#5A48C6}
+.tone-green, .icon-badge.tone-green {--ring:#9CB300;--ring-o:#D6E27E;--ring2:#6A57CE;--glyph:#71880A}
+
+/* sizes per section */
+.icon-badge--value{width:clamp(60px,6.6vw,74px);height:clamp(60px,6.6vw,74px)}
+.icon-badge--service{width:clamp(74px,8.2vw,96px);height:clamp(74px,8.2vw,96px)}
+.icon-badge--wellness{width:clamp(72px,8vw,92px);height:clamp(72px,8vw,92px)}
+.icon-badge--journey{width:clamp(66px,7vw,88px);height:clamp(66px,7vw,88px)}
+.icon-badge--stat{width:clamp(54px,5.6vw,66px);height:clamp(54px,5.6vw,66px)}
+
+/* per-section UNIQUE double-border variations (all reference the tone vars,
+   so purple/green alternation keeps working) */
+.icon-badge--service{box-shadow:0 0 0 2px var(--ring), 0 0 0 4px #fff, 0 0 0 5.5px var(--ring-o), 0 12px 26px rgba(90,72,198,.14)}
+.icon-badge--wellness{box-shadow:0 0 0 2.5px var(--ring), 0 0 0 6px #fff, 0 10px 22px rgba(90,72,198,.14)}
+.icon-badge--journey{box-shadow:0 0 0 2px var(--ring), 0 0 0 5px #fff, 0 0 0 7px var(--ring2), 0 14px 28px rgba(90,72,198,.18)}
+.icon-badge--value{box-shadow:0 0 0 2px var(--ring), 0 0 0 3.5px #fff, 0 0 0 4.5px var(--ring-o), 0 8px 18px rgba(90,72,198,.12)}
+.icon-badge--stat{box-shadow:0 0 0 2px var(--ring), 0 0 0 3.5px #fff, 0 0 0 4.5px var(--ring-o), 0 8px 16px rgba(90,72,198,.12)}
+
+/* Wellness badges get a DASHED outer ring in the complementary colour —
+   a distinct shape (not just a different shade) from the Services icon,
+   flat colour only, no glow/shading. */
+.icon-badge--wellness::after{content:"";position:absolute;inset:-10px;border-radius:50%;
+  border:2px dashed var(--ring2);pointer-events:none;
+  transition:transform .6s ease;animation:wellness-ring-spin 20s linear infinite;animation-play-state:paused}
+.wj-program:hover .icon-badge--wellness::after{animation-play-state:running}
+@keyframes wellness-ring-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.icon-badge--wellness::after{animation:none}}
+
+/* ALTERNATE tones by position → each icon in a section is unique */
+.services__grid .service-card:nth-child(even) .icon-badge{--ring:#9CB300;--ring-o:#D6E27E;--glyph:#71880A}
+.wj-programs__grid .wj-program:nth-child(even) .icon-badge{--ring:#9CB300;--ring-o:#D6E27E;--ring2:#6A57CE;--glyph:#71880A}
+.wj-journey__track .wj-step:nth-child(even) .icon-badge{--ring:#9CB300;--ring-o:#D6E27E;--ring2:#6A57CE;--glyph:#71880A}
+.about__values-list .value-row:nth-child(even) .icon-badge{--ring:#9CB300;--ring-o:#D6E27E;--glyph:#71880A}
+.hero__stats .hero__stat:nth-child(even) .icon-badge{--ring:#9CB300;--ring-o:#D6E27E;--glyph:#71880A}
+.au-values__grid .au-value:nth-child(even) .icon-badge{--ring:#9CB300;--ring-o:#D6E27E;--glyph:#71880A}
+.au-values__grid .au-values__card:nth-child(even) .icon-badge{--ring:#9CB300;--ring-o:#D6E27E;--glyph:#71880A}
+.fd-high__grid .fd-high__card:nth-child(even) .icon-badge{--ring:#9CB300;--ring-o:#D6E27E;--glyph:#71880A}
+
+.value-item:hover .icon-badge,
+.value-row:hover .icon-badge,
+.service-card:hover .icon-badge,
+.wj-program:hover .icon-badge,
+.wj-step:hover .icon-badge,
+.hero__stat:hover .icon-badge{transform:translateY(-5px) scale(1.06)}
+
+/* accessibility */
+:focus-visible{outline:2px solid var(--indigo);outline-offset:3px;border-radius:4px}
+.skip-link{position:absolute;left:-999px;top:0;background:#fff;padding:10px 16px;z-index:200;border-radius:0 0 10px 0}
+.skip-link:focus{left:0}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+}

@@ -1,0 +1,274 @@
+/* src/styles/AboutUs.css */
+.aboutus-page{padding-top:0}
+
+/* ============================================================
+   Intro — text + stats, with the bare logo mark (no ring/backdrop)
+   floating quietly on its own.
+   ============================================================ */
+.au-intro{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--cream),var(--ivory));
+  padding:clamp(112px,14vw,168px) 0 clamp(40px,5vw,60px)}
+.au-intro::before{content:"";position:absolute;top:-120px;right:-100px;width:380px;height:380px;border-radius:50%;
+  background:radial-gradient(circle,rgba(90,72,198,.10),transparent 68%);pointer-events:none}
+.au-intro::after{content:"";position:absolute;bottom:-140px;left:-90px;width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(198,218,0,.14),transparent 70%);pointer-events:none}
+
+.au-intro__grid{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(40px,5vw,64px);align-items:center}
+.au-intro__text{max-width:640px}
+.au-back{display:flex;width:fit-content;align-items:center;gap:8px;font-size:.82rem;font-weight:500;letter-spacing:.5px;
+  color:var(--indigo);margin-bottom:22px;transition:gap .3s,color .3s}
+.au-back svg{width:18px;height:18px}
+.au-back:hover{gap:12px;color:var(--indigo-deep)}
+.au-intro h1{font-size:clamp(2.4rem,5vw,3.6rem);margin:8px 0 18px}
+.au-intro__lede{font-size:1.1rem;color:var(--muted);margin-bottom:0;line-height:1.85}
+
+/* ---- logo mark: no ring, no circle backdrop — just the mark itself,
+   with a soft NEUTRAL shadow (continuous float/scale/tilt animation is
+   handled in JS via framer-motion, so it stays perfectly smooth) ---- */
+.au-intro__mark{position:relative;width:100%;max-width:250px;margin:0 auto;display:grid;place-items:center}
+.au-intro__logo{width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 10px 16px rgba(20,16,38,.10))}
+
+/* ---- stats: same bare-glyph, glowing, bold-serif treatment as the home hero ---- */
+.au-stats{display:flex;gap:clamp(14px,2.2vw,22px);margin-top:clamp(30px,4.5vw,42px);max-width:600px}
+.au-stat{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:7px}
+.au-stat__icon{display:block;width:clamp(26px,3vw,32px);height:clamp(26px,3vw,32px);
+  -webkit-mask-repeat:no-repeat;-webkit-mask-position:center;-webkit-mask-size:contain;
+  mask-repeat:no-repeat;mask-position:center;mask-size:contain;
+  filter:drop-shadow(0 0 3px rgba(255,255,255,.95)) drop-shadow(0 0 9px currentColor);
+  animation:au-stat-glow 2.6s ease-in-out infinite}
+.au-stat:nth-child(2) .au-stat__icon{animation-delay:.35s}
+.au-stat:nth-child(3) .au-stat__icon{animation-delay:.7s}
+.au-stat:nth-child(4) .au-stat__icon{animation-delay:1.05s}
+.au-stat__icon.tone-purple{background:var(--indigo);color:var(--indigo)}
+.au-stat__icon.tone-green{background:var(--lime-deep);color:var(--lime-deep)}
+@keyframes au-stat-glow{
+  0%,100%{filter:drop-shadow(0 0 3px rgba(255,255,255,.95)) drop-shadow(0 0 7px currentColor)}
+  50%{filter:drop-shadow(0 0 4px rgba(255,255,255,1)) drop-shadow(0 0 16px currentColor)}
+}
+.au-stat:hover .au-stat__icon{animation-play-state:paused;transform:scale(1.12);
+  filter:drop-shadow(0 0 4px rgba(255,255,255,1)) drop-shadow(0 0 20px currentColor)}
+.au-stat__num{font-family:var(--serif);font-variant-numeric:lining-nums tabular-nums;
+  font-size:clamp(1.4rem,2.3vw,1.75rem);font-weight:700;letter-spacing:-.2px;color:var(--indigo-deep);line-height:1}
+.au-stat__label{font-family:var(--sans);font-size:clamp(.6rem,1vw,.7rem);letter-spacing:.4px;
+  text-transform:uppercase;color:var(--muted);line-height:1.3;font-weight:500}
+
+@media(prefers-reduced-motion:reduce){.au-stat__icon{animation:none}}
+
+@media(max-width:960px){
+  .au-intro__grid{grid-template-columns:1fr;gap:30px;text-align:center}
+  .au-intro__text{max-width:600px;margin:0 auto}
+  .au-back{margin-left:auto;margin-right:auto}
+  .au-intro__mark{order:-1;max-width:150px}
+  .au-stats{margin:0 auto;justify-content:center}
+  .au-stat{align-items:center;text-align:center}
+}
+@media(max-width:560px){
+  .au-stats{flex-wrap:wrap;gap:22px 16px}
+  .au-stat{flex:0 1 42%}
+}
+
+/* ============================================================
+   What We Offer — three quick links reusing the exact icon-badge
+   treatment from Services / Wellness / Journey on the home page.
+   ============================================================ */
+.au-overview{background:var(--ivory)}
+.au-overview__grid{display:grid;grid-template-columns:repeat(2,minmax(0,340px));justify-content:center;gap:clamp(18px,2.4vw,26px)}
+.au-overview__card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:clamp(30px,3.6vw,38px) clamp(24px,2.8vw,30px);text-align:center;
+  display:flex;flex-direction:column;align-items:center;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.au-overview__card:hover{transform:translateY(-8px);box-shadow:var(--shadow-soft)}
+.au-overview__card .icon-badge{margin-bottom:16px}
+.au-overview__card h4{font-size:1.2rem;color:var(--indigo-deep);margin-bottom:8px}
+.au-overview__card:nth-child(2) h4{color:var(--lime-deep)}
+.au-overview__card p{font-size:.88rem;color:var(--muted);line-height:1.6;margin-bottom:16px}
+.au-overview__link{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;
+  letter-spacing:.3px;color:var(--indigo);margin-top:auto;transition:gap .3s ease}
+.au-overview__card:nth-child(2) .au-overview__link{color:var(--lime-deep)}
+.au-overview__link svg{width:15px;height:15px;transition:transform .3s ease}
+.au-overview__card:hover .au-overview__link{gap:10px}
+.au-overview__card:hover .au-overview__link svg{transform:translateX(2px)}
+
+@media(max-width:640px){.au-overview__grid{grid-template-columns:1fr;max-width:360px;margin:0 auto}}
+
+/* ===== Mission & Vision ===== */
+.au-mv__grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.au-mv__card{position:relative;padding:34px 32px;border-radius:var(--radius);border:1px solid var(--line);
+  overflow:hidden;background:#fff;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.au-mv__card:hover{transform:translateY(-6px);box-shadow:var(--shadow-soft)}
+.au-mv__card::before{content:"";position:absolute;top:0;left:0;bottom:0;width:4px}
+.au-mv__card--mission::before{background:var(--indigo)}
+.au-mv__card--vision::before{background:var(--lime-deep)}
+.au-mv__tag{display:inline-block;font-family:var(--sans);font-weight:600;font-size:.72rem;letter-spacing:2px;
+  text-transform:uppercase;color:var(--indigo-deep);margin-bottom:12px}
+.au-mv__card--vision .au-mv__tag{color:var(--lime-deep)}
+.au-mv__card p{font-family:var(--serif);font-size:1.24rem;line-height:1.55;color:var(--indigo-deep)}
+
+/* ============================================================
+   Core Values — deliberately NOT cards. Bare circular badges sitting
+   directly on the section, with a faint dotted-arc pattern behind
+   them for texture. No borders, no box background, no shadow glow.
+   ============================================================ */
+.au-values{position:relative;overflow:hidden;background:var(--cream);padding:clamp(56px,7vw,92px) 0}
+.au-values__pattern{position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background-image:radial-gradient(circle,rgba(90,72,198,.16) 1.6px,transparent 1.6px);
+  background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%, #000 0%, transparent 72%);
+  mask-image:radial-gradient(ellipse 70% 70% at 50% 50%, #000 0%, transparent 72%)}
+.au-values__grid{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(28px,3.6vw,40px)}
+.au-value{text-align:center;display:flex;flex-direction:column;align-items:center;padding-top:12px}
+.au-value:nth-child(2n){margin-top:clamp(0px,3vw,26px)}
+.au-value:nth-child(odd){--tone:var(--indigo)}
+.au-value:nth-child(even){--tone:var(--lime-deep)}
+
+/* Distinct from Services (white disc + ring): a solid filled circle with
+   the glyph reversed to white. Flat colour only, no shadow, no border. */
+.au-value__icon{position:relative;width:clamp(74px,8.2vw,92px);height:clamp(74px,8.2vw,92px);border-radius:50%;
+  display:grid;place-items:center;background:var(--tone);margin-bottom:18px;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.au-value__icon .icon-glyph{background:#fff !important}
+.au-value:hover .au-value__icon{transform:translateY(-6px) scale(1.05)}
+/* a single flat ring "ripples" outward on hover — no blur, no box-shadow */
+.au-value__icon::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid var(--tone);
+  opacity:0;transform:scale(.86);transition:opacity .4s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
+.au-value:hover .au-value__icon::after{opacity:.45;transform:scale(1.14)}
+
+.au-value h4{font-family:var(--serif);font-size:1.16rem;color:var(--indigo-deep);margin-bottom:8px}
+.au-value p{font-size:.86rem;color:var(--muted);line-height:1.6;max-width:230px}
+
+@media(max-width:900px){
+  .au-values__grid{grid-template-columns:repeat(2,1fr);row-gap:36px}
+  .au-value:nth-child(2n){margin-top:0}
+}
+@media(max-width:560px){
+  .au-values__grid{grid-template-columns:1fr;row-gap:32px}
+}
+
+/* ===== Story — full-bleed photo behind centred text ===== */
+.au-story{position:relative;overflow:hidden;padding:clamp(64px,9vw,104px) 0;min-height:560px}
+.au-story__bg{position:absolute;inset:0;z-index:0}
+.au-story__bg picture{position:absolute;inset:0;display:block}
+.au-story__bg img{width:100%;height:100%;object-fit:cover;object-position:center 62%}
+/* Radial scrim centred on the text column — same technique as the home
+   About section: strong enough for legibility, light enough that the
+   photo (and the woman in it) stays clearly visible around the edges. */
+.au-story__scrim{position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 78% at 50% 42%,
+    rgba(252,251,255,.92) 0%,
+    rgba(252,251,255,.8) 32%,
+    rgba(240,237,252,.5) 58%,
+    rgba(240,237,252,.22) 80%,
+    rgba(240,237,252,.06) 100%)}
+.au-story__grid{position:relative;z-index:1}
+.au-story__head{max-width:640px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center}
+.au-story__body{margin-top:18px;max-width:64ch}
+.au-story__body p{color:#3A2E62;font-weight:450;line-height:1.9;margin-bottom:18px;
+  text-shadow:0 1px 14px rgba(255,255,255,.75)}
+.au-story__body p:last-child{margin-bottom:0}
+
+/* ============================================================
+   Gallery — lightbox-style viewer. The stage uses a blurred backdrop
+   of the current photo filling the frame, with the actual image laid
+   on top using object-fit:contain — so landscape AND portrait photos
+   are always shown fully, never cropped, with no ugly empty bars.
+   ============================================================ */
+.au-gallery{background:var(--ivory)}
+.au-gallery__viewer{max-width:920px;margin:0 auto}
+
+.au-gallery__stage{position:relative;height:clamp(320px,52vw,560px);border-radius:22px;overflow:hidden;
+  background:var(--charcoal);box-shadow:var(--shadow-soft)}
+.au-gallery__backdrop{position:absolute;inset:0;background-size:cover;background-position:center;
+  filter:blur(28px) brightness(.55) saturate(1.1);transform:scale(1.15)}
+.au-gallery__stage-img{position:relative;z-index:1;display:block;width:100%;height:100%;object-fit:contain}
+
+.au-gallery__nav{position:absolute;top:50%;z-index:2;transform:translateY(-50%);
+  display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;
+  background:rgba(255,255,255,.9);color:var(--indigo-deep);
+  transition:background .3s,transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s;box-shadow:0 6px 16px rgba(20,16,38,.22)}
+.au-gallery__nav svg{width:22px;height:22px}
+.au-gallery__nav:hover{background:#fff;transform:translateY(-50%) scale(1.08)}
+.au-gallery__nav--prev{left:14px}
+.au-gallery__nav--next{right:14px}
+
+.au-gallery__dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
+.au-gallery__dot{width:8px;height:8px;border-radius:50%;background:var(--line);border:none;cursor:pointer;padding:0;
+  transition:background .3s,transform .3s}
+.au-gallery__dot.is-active{background:var(--indigo);transform:scale(1.3)}
+
+.au-gallery__thumbs{display:flex;gap:10px;margin-top:14px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin;
+  justify-content:center;flex-wrap:wrap}
+.au-gallery__thumb{flex:0 0 auto;width:76px;height:76px;border-radius:12px;overflow:hidden;border:2px solid transparent;
+  padding:0;cursor:pointer;opacity:.6;transition:opacity .3s,border-color .3s,transform .3s cubic-bezier(.2,.8,.2,1)}
+.au-gallery__thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.au-gallery__thumb:hover{opacity:.9;transform:translateY(-2px)}
+.au-gallery__thumb.is-active{opacity:1;border-color:var(--indigo)}
+
+@media(max-width:640px){
+  .au-gallery__stage{height:clamp(260px,72vw,420px);border-radius:16px}
+  .au-gallery__nav{width:38px;height:38px}
+  .au-gallery__nav svg{width:18px;height:18px}
+  .au-gallery__nav--prev{left:10px}
+  .au-gallery__nav--next{right:10px}
+  .au-gallery__thumb{width:60px;height:60px}
+  .au-gallery__count{font-size:.8rem;padding:5px 12px}
+  .au-gallery__stage-cap{font-size:.8rem;padding:6px 12px;left:10px;bottom:10px}
+}
+
+/* ===== Approach — plain, clean cards (no numbering, no marker) ===== */
+.au-approach__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.au-approach__card{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:30px 26px;overflow:hidden;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.au-approach__card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--indigo),var(--lime));transform:scaleX(0);transform-origin:left;transition:transform .45s}
+.au-approach__card:nth-child(even)::before{background:linear-gradient(90deg,var(--lime-deep),var(--indigo))}
+.au-approach__card:hover{transform:translateY(-6px);box-shadow:var(--shadow-soft)}
+.au-approach__card:hover::before{transform:scaleX(1)}
+.au-approach__card h4{font-size:1.14rem;margin-bottom:8px;color:var(--indigo-deep)}
+.au-approach__card:nth-child(even) h4{color:var(--lime-deep)}
+.au-approach__card p{font-size:.9rem;color:var(--muted);line-height:1.6}
+
+/* ===== Why + founder teaser ===== */
+.au-why{padding:clamp(52px,6.5vw,88px) 0}
+.au-why__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4.5vw,60px);align-items:center}
+.au-why__list-wrap h2{font-size:clamp(1.6rem,3vw,2.2rem);margin:10px 0 20px}
+.au-why__list{display:grid;gap:14px}
+.au-why__list li{display:flex;align-items:flex-start;gap:12px;color:var(--charcoal);line-height:1.55}
+.au-why__list svg{width:22px;height:22px;flex-shrink:0;padding:4px;border-radius:50%;
+  background:var(--lime-tint);color:var(--lime-deep);margin-top:1px}
+.au-why__list li:nth-child(even) svg{background:var(--indigo-tint);color:var(--indigo)}
+
+.au-why__founder{display:flex;gap:22px;align-items:center;background:linear-gradient(160deg,var(--cream),#fff);
+  border:1px solid var(--line);border-radius:calc(var(--radius) + 4px);padding:24px;box-shadow:var(--shadow-soft)}
+.au-why__photo{width:128px;height:150px;flex-shrink:0;border-radius:18px;overflow:hidden;border:3px solid #fff;box-shadow:0 10px 24px rgba(90,72,198,.16)}
+.au-why__photo img{width:100%;height:100%;object-fit:cover}
+.au-why__founder-body h3{font-size:1.35rem;color:var(--indigo-deep);margin-top:4px}
+.au-why__creds{font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--lime-deep);font-weight:600;margin:4px 0 8px}
+.au-why__founder-body p{font-size:.9rem;color:var(--muted);line-height:1.6;margin-bottom:16px}
+
+/* ===== Visit / Reviews ===== */
+.au-visit{background:var(--ivory);padding:clamp(52px,6.5vw,84px) 0;text-align:center;border-top:1px solid var(--line)}
+.au-visit__inner{max-width:600px;margin:0 auto}
+.au-visit__inner h2{font-size:clamp(1.7rem,3.2vw,2.3rem);margin:10px 0 14px}
+.au-visit__addr{color:var(--muted);font-size:.95rem;line-height:1.6;margin-bottom:26px}
+.au-visit__actions{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+.au-visit__actions .btn svg{margin-right:-2px}
+
+@media(max-width:900px){
+  .au-mv__grid{grid-template-columns:1fr}
+  .au-approach__grid{grid-template-columns:repeat(2,1fr)}
+  .au-why__grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .au-approach__grid{grid-template-columns:1fr}
+  .au-why__founder{flex-direction:column;text-align:center}
+  .au-why__creds{margin-left:auto;margin-right:auto}
+  .au-story__bg img{object-position:center 66%}
+}
+
+/* ===== CTA ===== */
+.au-cta{background:linear-gradient(165deg,#F1EDFC,#E7E1F9);color:var(--charcoal);padding:clamp(60px,8vw,100px) 0;text-align:center;overflow:hidden;border-top:1px solid var(--line)}
+.au-cta::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 84% 12%,rgba(198,218,0,.16),transparent 48%)}
+.au-cta__inner{position:relative;z-index:1}
+.au-cta__inner h2{font-size:clamp(2rem,4vw,2.9rem);margin-bottom:14px}
+.au-cta__inner p{color:var(--muted);max-width:520px;margin:0 auto 28px}
+.au-cta__actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
