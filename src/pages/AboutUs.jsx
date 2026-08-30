@@ -41,7 +41,7 @@ const valIcons = {
 // src/assets/about_us/gallery/ in filename order. This means the gallery
 // never breaks the build if a photo is added or removed later: it simply
 // iterates whatever is in the folder, in order, with no hardcoded imports.
-const galleryModules = import.meta.glob("../assets/about_us/gallery/*.{jpg,jpeg,png,webp}", {
+const galleryModules = import.meta.glob("../assets/about_us/gallery/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP,Jpg,Jpeg,Png,Webp}", {
   eager: true,
   import: "default",
 });
@@ -222,7 +222,11 @@ export default function AboutUs() {
 
       {/* Gallery — a lightbox-style viewer: one large image at a time (both
           landscape and portrait shown fully, never cropped), prev/next
-          arrows, a counter pill, and a thumbnail strip below. */}
+          arrows, a counter pill, and a thumbnail strip below.
+          Guarded: if the gallery folder is empty for any reason (build-time
+          glob found nothing), this section simply doesn't render instead of
+          crashing the whole page on gallery[activeImg] being undefined. */}
+      {gallery.length > 0 && (
       <section className="au-gallery section-pad">
         <div className="wrap">
           <div className="head-center">
@@ -284,6 +288,7 @@ export default function AboutUs() {
           </Reveal>
         </div>
       </section>
+      )}
 
       {/* Approach */}
       <section className="au-approach section-pad">
