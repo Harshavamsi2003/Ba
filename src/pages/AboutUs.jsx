@@ -52,7 +52,7 @@ const gallery = Object.keys(galleryModules)
 // so the visual language stays consistent site-wide.
 const overview = [
   { key: "services", badge: "icon-badge--service", icon: ovServices, title: "Services",
-    text: "Eight dedicated therapy pathways — fertility, PCOS, stress, weight, and more.", href: "/#services" },
+    text: "Eight dedicated therapy pathways — fertility, PMOS, stress, weight, and more.", href: "/#services" },
   { key: "wellness", badge: "icon-badge--wellness", icon: ovWellness, title: "Wellness Programs",
     text: "Structured natural programs blending diet, detox, yoga and hands-on therapy.", href: "/#wellness" },
 ];
