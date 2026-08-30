@@ -9,7 +9,7 @@ import AnimatedText from "../components/AnimatedText.jsx";
 import CountUp from "../components/CountUp.jsx";
 import { company, founder, stats, values, clinic } from "../data/site.js";
 import portrait from "../assets/founder/founder_vidya.jpg";
-import logo from "../assets/logo/logo-small.png";
+import logo from "../assets/logo/logo.png";
 import wellnessD from "../assets/about_us/wellness_d.jpg";
 import wellnessM from "../assets/about_us/wellness_m.jpg";
 import statFamilies from "../assets/icons/stats/happy_families.png";
