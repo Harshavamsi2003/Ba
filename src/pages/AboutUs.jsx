@@ -1,6 +1,6 @@
 // src/pages/AboutUs.jsx
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useCallback } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import SEO from "../components/SEO.jsx";
 import Reveal from "../components/Reveal.jsx";
@@ -22,6 +22,7 @@ import valSupport from "../assets/icons/journey/better_health.png";
 import valWellbeing from "../assets/icons/features/long_term_wellbeing.png";
 import ovServices from "../assets/icons/services/fertility.png";
 import ovWellness from "../assets/icons/wellness/fertility.png";
+import ovTreatments from "../assets/icons/features/natural_healing.png";
 import "../styles/AboutUs.css";
 
 // Stat icons — bare glyphs (same treatment as the home hero), each unique.
@@ -65,6 +66,8 @@ const overview = [
     text: "Eight dedicated therapy pathways — fertility, PMOS, stress, weight, and more.", href: "/#services" },
   { key: "wellness", badge: "icon-badge--wellness", icon: ovWellness, title: "Wellness Programs",
     text: "Structured natural programs blending diet, detox, yoga and hands-on therapy.", href: "/#wellness" },
+  { key: "treatments", badge: "icon-badge--treatments", icon: ovTreatments, title: "Treatments",
+    text: "Nine core naturopathy modalities — hydrotherapy, acupuncture, yoga and more.", href: "/treatments" },
 ];
 
 export default function AboutUs() {
@@ -72,6 +75,29 @@ export default function AboutUs() {
   const [activeImg, setActiveImg] = useState(0);
   const prevImg = () => setActiveImg((i) => (i - 1 + gallery.length) % gallery.length);
   const nextImg = () => setActiveImg((i) => (i + 1) % gallery.length);
+
+  // Same routing logic as Navbar/Footer: "/#section" hash links scroll
+  // smoothly (navigating home first if needed), plain "/route" links use
+  // the router instead of a full page reload.
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const handleNav = useCallback((e, to) => {
+    if (to.startsWith("/#")) {
+      e.preventDefault();
+      const hash = "#" + to.split("#")[1];
+      const scroll = () => {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+        else window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+      if (pathname !== "/") { navigate("/"); setTimeout(scroll, 80); }
+      else scroll();
+    } else {
+      e.preventDefault();
+      navigate(to);
+    }
+  }, [navigate, pathname]);
+
   return (
     <div id="main" className="aboutus-page">
       <SEO
@@ -96,10 +122,11 @@ export default function AboutUs() {
           </div>
 
           <motion.div className="au-intro__mark"
-            initial={{ opacity: 0, scale: 0.85, y: 12 }}
+            initial={{ opacity: 0, scale: 0.85, y: 8 }}
             animate={reduce
               ? { opacity: 1, scale: 1, y: 0 }
-              : { opacity: 1, scale: [1, 1.035, 1], y: [0, -12, 0], rotate: [0, 1.5, 0, -1.5, 0] }}
+              : { opacity: 1, scale: [1, 1.025, 1], y: [0, -7, 0], rotate: [0, 1, 0, -1, 0] }}
+            whileHover={reduce ? {} : { scale: 1.06, rotate: 0, transition: { duration: 0.4, ease: [0.2, 0.8, 0.2, 1] } }}
             transition={reduce
               ? { duration: 0.9, ease: [0.2, 0.8, 0.2, 1], delay: 0.2 }
               : {
@@ -331,7 +358,7 @@ export default function AboutUs() {
                 </span>
                 <h4>{o.title}</h4>
                 <p>{o.text}</p>
-                <a href={o.href} className="au-overview__link">
+                <a href={o.href} onClick={(e) => handleNav(e, o.href)} className="au-overview__link">
                   Explore
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
                 </a>
