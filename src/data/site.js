@@ -11,7 +11,7 @@ export const clinic = {
   mapsQuery: "Baby Blossom Naturopathy Fertility & Wellness Clinic, Sabari Avenue, Ottiyambakkam Main Road, Sithalapakkam, Chennai 600131",
   mapsLink: "https://maps.app.goo.gl/yBjNo2MuYJbLomFY9",
   domain: "https://www.babyblossomfertility.in",
-  reviewsUrl: "https://www.google.com/maps/place/Baby+Blossom+Naturopathy+Fertility+and+Wellness+Clinic/@12.882064,80.1922007,1624m/data=!3m1!1e3!4m8!3m7!1s0x3a525bb6df3525dd:0xe365cde74e2688f!8m2!3d12.882064!4d80.1922007!9m1!1b1!16s%2Fg%2F11zdhzxj30!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D",
+  reviewsUrl: "https://www.google.com/maps/place/Baby+Blossom+Naturopathy+Fertility+and+Wellness+Clinic/@12.882064,80.1922007,1061m/data=!3m1!1e3!4m8!3m7!1s0x3a525bb6df3525dd:0xe365cde74e2688f!8m2!3d12.882064!4d80.1922007!9m1!1b1!16s%2Fg%2F11zdhzxj30!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D",
 };
 
 export const nav = [
