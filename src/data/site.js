@@ -134,7 +134,7 @@ export const founder = {
   bio: "Dr.C Vidya is a passionate naturopath and women's wellness expert, dedicated to helping individuals and couples achieve optimal health and their dream of parenthood through natural, holistic care. With over 15 years of clinical experience and more than 1000 happy families, she blends evidence-based naturopathy with genuine, unhurried compassion.",
   mission: "My mission is to empower individuals with the right care, guidance and natural therapies to bring balance, healing and happiness into their lives.",
   story: [
-    "Dr.C Vidya's path into naturopathy began with a simple conviction — that the body, given the right conditions, holds a profound ability to heal itself. Trained in the Bachelor of Naturopathy and Yogic Sciences (BNYS) and further qualified in public health, she chose to devote her practice to the women who so often carry their struggles quietly: those facing infertility, PCOS, hormonal imbalance and the emotional weight that comes with them.",
+    "Dr.C Vidya's path into naturopathy began with a simple conviction — that the body, given the right conditions, holds a profound ability to heal itself. Trained in the Bachelor of Naturopathy and Yogic Sciences (BNYS) and further qualified in public health, she chose to devote her practice to the women who so often carry their struggles quietly: those facing infertility, PMOS, hormonal imbalance and the emotional weight that comes with them.",
     "She has also completed a Diploma in Varma & Massage Science and an MS in Counselling & Psychotherapy — bringing together physical therapy and emotional support under one roof, so care never stops at the physical alone.",
     "Over fifteen years, she has refined an approach that is at once scientific and deeply human — reading the whole person rather than a single lab value, and designing care that fits a real life. Her patients speak less about prescriptions and more about being truly heard, often for the first time.",
     "Today, Baby Blossom is the expression of that philosophy: a calm, welcoming space where natural medicine, nutrition, yoga and heartfelt support come together to help families blossom.",
@@ -186,8 +186,8 @@ export const treatments = [
   },
   {
     key: "chromotherapy",
-    title: "Chromotherapy (Colour Therapy)",
-    description: "Chromotherapy uses specific frequencies of coloured light spectrums to rebalance the body's energy centers (chakras) and influence mood, metabolism, and vitality.",
+    title: "Chromotherapy (Color Therapy)",
+    description: "Chromotherapy uses specific frequencies of colored light spectrums to rebalance the body's energy centers (chakras) and influence mood, metabolism, and vitality.",
     benefits: "Uplifts mood, alleviates seasonal affective symptoms, promotes mental clarity, and balances circadian rhythms for restorative sleep.",
     fertility: "Promotes emotional well-being, eases anxiety associated with health struggles, and supports deep restorative rest.",
   },
