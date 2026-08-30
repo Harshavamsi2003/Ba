@@ -41,3 +41,8 @@
 .contact__success p{color:var(--muted);line-height:1.7;max-width:38ch;margin-bottom:22px}
 
 @media(max-width:900px){.contact__grid{grid-template-columns:1fr}}
+
+/* Honeypot spam trap — moved off-screen rather than display:none, since
+   some bots skip fields hidden that way but still fill absolute-positioned
+   ones. Real visitors never see or reach it (tabIndex=-1). */
+.contact__hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
