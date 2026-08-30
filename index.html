@@ -10,24 +10,25 @@
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#5A48C6" />
 
+    <!-- title, description, canonical, robots and og:title/description/url are
+         intentionally NOT set here — every route (including "/") sets its own
+         correct version via the <SEO> component (src/components/SEO.jsx),
+         rendered through react-helmet-async. Keeping them here too used to
+         cause real duplicate/conflicting tags in the live DOM: two competing
+         <link rel="canonical"> tags and two competing <meta name="description">
+         tags on every non-home page, confirmed by inspecting the rendered
+         output — a genuine cause of indexing confusion in Search Console.
+         Only tags that never change per route stay static below. -->
     <title>Baby Blossom Naturopathy | Fertility & Wellness Clinic, Chennai</title>
-    <meta name="description" content="Baby Blossom Naturopathy Fertility & Wellness Clinic in Chennai. Holistic, natural, evidence-based fertility care by Dr.C Vidya — PMOS management, preconception care, yoga therapy and more." />
     <meta name="keywords" content="naturopathy Chennai, fertility clinic Chennai, PMOS management, holistic fertility care, preconception care, Dr.C Vidya, Baby Blossom" />
     <meta name="author" content="Baby Blossom Naturopathy Fertility & Wellness Clinic" />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="canonical" href="https://www.babyblossomfertility.in/" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Baby Blossom Naturopathy | Fertility & Wellness Clinic" />
-    <meta property="og:description" content="Holistic, natural fertility care for Mind, Body & Life. Your journey to motherhood begins here." />
-    <meta property="og:url" content="https://www.babyblossomfertility.in/" />
     <meta property="og:image" content="https://www.babyblossomfertility.in/og-image.png" />
     <meta property="og:site_name" content="Baby Blossom Naturopathy" />
     <meta property="og:locale" content="en_IN" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Baby Blossom Naturopathy | Fertility & Wellness Clinic" />
-    <meta name="twitter:description" content="Holistic, natural fertility care for Mind, Body & Life." />
     <meta name="twitter:image" content="https://www.babyblossomfertility.in/og-image.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
