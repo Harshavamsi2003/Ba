@@ -206,8 +206,8 @@ export const treatments = [
   },
   {
     key: "chromotherapy",
-    title: "Chromotherapy (Color Therapy)",
-    description: "Chromotherapy uses specific frequencies of colored light spectrums to rebalance the body's energy centers (chakras) and influence mood, metabolism, and vitality.",
+    title: "Chromotherapy (Colour Therapy)",
+    description: "Chromotherapy uses specific frequencies of coloured light spectrums to rebalance the body's energy centers (chakras) and influence mood, metabolism, and vitality.",
     benefits: "Uplifts mood, alleviates seasonal affective symptoms, promotes mental clarity, and balances circadian rhythms for restorative sleep.",
     fertility: "Promotes emotional well-being, eases anxiety associated with health struggles, and supports deep restorative rest.",
   },
