@@ -14,6 +14,12 @@ const GoogleG = ({ className }) => (
   </svg>
 );
 
+const Star = ({ filled }) => (
+  <svg viewBox="0 0 24 24" className={`tst__star${filled ? " is-filled" : ""}`} aria-hidden="true">
+    <path d="M12 2.6 15 8.8l6.8.9-4.9 4.8 1.2 6.8L12 17.9l-6.1 3.4 1.2-6.8-4.9-4.8 6.8-.9L12 2.6Z" />
+  </svg>
+);
+
 export default function Testimonials() {
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -52,8 +58,6 @@ export default function Testimonials() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <svg className="tst__quote" viewBox="0 0 32 24" aria-hidden="true"><path d="M0 24V14.4C0 6 4.8 1.2 12.6 0l1.8 3.6C9.6 4.8 7.2 7.8 7.2 12h6v12H0Zm18 0V14.4C18 6 22.8 1.2 30.6 0l1.8 3.6c-4.8 1.2-7.2 4.2-7.2 8.4h6v12H18Z" /></svg>
-
           <AnimatePresence mode="wait">
             <motion.div
               key={i}
@@ -63,6 +67,18 @@ export default function Testimonials() {
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.55, ease: [0.22, 0.61, 0.24, 1] }}
             >
+              <div className="tst__stars" role="img" aria-label={`${t.rating ?? 5} out of 5 stars`}>
+                {Array.from({ length: 5 }).map((_, idx) => (
+                  <motion.span
+                    key={idx}
+                    initial={reduce ? false : { opacity: 0, scale: 0.4 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={reduce ? { duration: 0 } : { delay: idx * 0.06, type: "spring", stiffness: 260, damping: 14 }}
+                  >
+                    <Star filled={idx < (t.rating ?? 5)} />
+                  </motion.span>
+                ))}
+              </div>
               <p className="tst__text">{t.quote}</p>
               <div className="tst__who">
                 <span className="tst__avatar">{t.name.charAt(0)}</span>
