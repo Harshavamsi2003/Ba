@@ -24,8 +24,21 @@
 /* ---- logo mark: no ring, no circle backdrop — just the mark itself,
    with a soft NEUTRAL shadow (continuous float/scale/tilt animation is
    handled in JS via framer-motion, so it stays perfectly smooth) ---- */
-.au-intro__mark{position:relative;width:100%;max-width:250px;margin:0 auto;display:grid;place-items:center}
-.au-intro__logo{width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 10px 16px rgba(20,16,38,.10))}
+/* ---- logo mark: sits on its own white card so it reads cleanly against
+   the section's tinted gradient background (continuous float/scale/tilt
+   animation is handled in JS via framer-motion, so it stays smooth) ---- */
+.au-intro__mark{position:relative;width:100%;max-width:280px;aspect-ratio:1/1;
+  margin:clamp(44px,7vw,96px) auto 0;align-self:center;display:grid;place-items:center;
+  background:#fff;border-radius:50%;border:1px solid var(--line);
+  padding:clamp(20px,3vw,32px);box-shadow:var(--shadow-soft)}
+.au-intro__logo{width:100%;height:100%;object-fit:contain}
+/* soft breathing halo behind the circle — purely CSS so it stays smooth
+   even when framer-motion's loop is disabled for reduced motion */
+.au-intro__mark::before{content:"";position:absolute;inset:-14px;border-radius:50%;
+  background:radial-gradient(circle,rgba(90,72,198,.16),rgba(198,218,0,.10) 60%,transparent 75%);
+  z-index:-1;animation:au-mark-halo 4.5s ease-in-out infinite}
+@keyframes au-mark-halo{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.16);opacity:.25}}
+@media(prefers-reduced-motion:reduce){.au-intro__mark::before{animation:none}}
 
 /* ---- stats: same bare-glyph, glowing, bold-serif treatment as the home hero ---- */
 .au-stats{display:flex;gap:clamp(14px,2.2vw,22px);margin-top:clamp(30px,4.5vw,42px);max-width:600px}
@@ -53,11 +66,15 @@
 
 @media(prefers-reduced-motion:reduce){.au-stat__icon{animation:none}}
 
+@media(max-width:1180px) and (min-width:961px){
+  .au-intro__mark{max-width:230px;margin-top:clamp(32px,5vw,60px)}
+}
+
 @media(max-width:960px){
   .au-intro__grid{grid-template-columns:1fr;gap:30px;text-align:center}
   .au-intro__text{max-width:600px;margin:0 auto}
   .au-back{margin-left:auto;margin-right:auto}
-  .au-intro__mark{order:-1;max-width:150px}
+  .au-intro__mark{order:-1;max-width:190px;margin-top:0}
   .au-stats{margin:0 auto;justify-content:center}
   .au-stat{align-items:center;text-align:center}
 }
@@ -71,7 +88,7 @@
    treatment from Services / Wellness / Journey on the home page.
    ============================================================ */
 .au-overview{background:var(--ivory)}
-.au-overview__grid{display:grid;grid-template-columns:repeat(2,minmax(0,340px));justify-content:center;gap:clamp(18px,2.4vw,26px)}
+.au-overview__grid{display:grid;grid-template-columns:repeat(3,minmax(0,320px));justify-content:center;gap:clamp(18px,2.4vw,26px)}
 .au-overview__card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
   padding:clamp(30px,3.6vw,38px) clamp(24px,2.8vw,30px);text-align:center;
   display:flex;flex-direction:column;align-items:center;
@@ -80,14 +97,23 @@
 .au-overview__card .icon-badge{margin-bottom:16px}
 .au-overview__card h4{font-size:1.2rem;color:var(--indigo-deep);margin-bottom:8px}
 .au-overview__card:nth-child(2) h4{color:var(--lime-deep)}
+.au-overview__card:nth-child(3) h4{color:var(--heart)}
 .au-overview__card p{font-size:.88rem;color:var(--muted);line-height:1.6;margin-bottom:16px}
 .au-overview__link{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;
   letter-spacing:.3px;color:var(--indigo);margin-top:auto;transition:gap .3s ease}
 .au-overview__card:nth-child(2) .au-overview__link{color:var(--lime-deep)}
+.au-overview__card:nth-child(3) .au-overview__link{color:var(--heart)}
 .au-overview__link svg{width:15px;height:15px;transition:transform .3s ease}
 .au-overview__card:hover .au-overview__link{gap:10px}
 .au-overview__card:hover .au-overview__link svg{transform:translateX(2px)}
 
+/* Treatments badge — a solid heart-red outer ring (in place of Wellness's
+   dashed lime ring) so the third card reads as its own distinct mark,
+   not just a resize of Services. */
+.icon-badge--treatments{width:clamp(74px,8.2vw,96px);height:clamp(74px,8.2vw,96px);
+  box-shadow:0 0 0 2px var(--ring), 0 0 0 4px #fff, 0 0 0 5.5px var(--heart), 0 12px 26px rgba(227,44,46,.16)}
+
+@media(max-width:980px){.au-overview__grid{grid-template-columns:repeat(2,minmax(0,340px))}}
 @media(max-width:640px){.au-overview__grid{grid-template-columns:1fr;max-width:360px;margin:0 auto}}
 
 /* ===== Mission & Vision ===== */
