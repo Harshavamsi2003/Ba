@@ -11,7 +11,7 @@ export const clinic = {
   mapsQuery: "Baby Blossom Naturopathy Fertility & Wellness Clinic, Sabari Avenue, Ottiyambakkam Main Road, Sithalapakkam, Chennai 600131",
   mapsLink: "https://maps.app.goo.gl/yBjNo2MuYJbLomFY9",
   domain: "https://www.babyblossomfertility.in",
-  reviewsUrl: "https://www.google.com/search?q=baby+blossom+naturopathy+fertility+and+wellness+clinic+chennai+reviews",
+  reviewsUrl: "https://www.google.com/maps/place/Baby+Blossom+Naturopathy+Fertility+and+Wellness+Clinic/@12.882064,80.1922007,1624m/data=!3m1!1e3!4m8!3m7!1s0x3a525bb6df3525dd:0xe365cde74e2688f!8m2!3d12.882064!4d80.1922007!9m1!1b1!16s%2Fg%2F11zdhzxj30!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D",
 };
 
 export const nav = [
@@ -186,8 +186,8 @@ export const treatments = [
   },
   {
     key: "chromotherapy",
-    title: "Chromotherapy (Color Therapy)",
-    description: "Chromotherapy uses specific frequencies of colored light spectrums to rebalance the body's energy centers (chakras) and influence mood, metabolism, and vitality.",
+    title: "Chromotherapy (Colour Therapy)",
+    description: "Chromotherapy uses specific frequencies of coloured light spectrums to rebalance the body's energy centers (chakras) and influence mood, metabolism, and vitality.",
     benefits: "Uplifts mood, alleviates seasonal affective symptoms, promotes mental clarity, and balances circadian rhythms for restorative sleep.",
     fertility: "Promotes emotional well-being, eases anxiety associated with health struggles, and supports deep restorative rest.",
   },
