@@ -37,19 +37,19 @@ const valIcons = {
   long_term_wellbeing: valWellbeing,
 };
 
-// Clinic gallery — dynamically loads every image inside
-// src/assets/about_us/gallery/ in filename order. This means the gallery
-// never breaks the build if a photo is added or removed later: it simply
-// iterates whatever is in the folder, in order, with no hardcoded imports.
-const galleryModules = import.meta.glob("../assets/about_us/gallery/*.{jpg,jpeg,png,webp}", {
-  eager: true,
-  import: "default",
-});
-// Numeric-aware sort: pulls the number out of each filename (1.jpeg,
-// 07-waiting-area.jpg, etc.) and orders by that, not by plain string
-// comparison — a plain string sort would put "10.jpeg" between "1" and
-// "2" once a filename goes past a single digit. Files with no number in
-// the name fall back to alphabetical, so nothing crashes if one shows up.
+// Clinic gallery — auto-loads every image inside
+// src/assets/about_us/gallery/. Files load in numeric filename order
+// (1.jpeg, 2.jpeg, ... 10.jpeg, ...). Drop a new numbered photo in that
+// folder and it appears automatically — no code change needed. Matches
+// common extensions in any case (.jpg/.JPG/.Jpeg/etc) since Vercel's Linux
+// build is case-sensitive even when local Windows/Mac editing isn't. If
+// the folder ever matches zero files, this logs a clear console warning
+// (diagnosable from DevTools) and the gallery section below simply
+// doesn't render — it can't crash the page.
+const galleryModules = import.meta.glob(
+  "../assets/about_us/gallery/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP,Jpg,Jpeg,Png,Webp}",
+  { eager: true, import: "default" }
+);
 const gallery = Object.keys(galleryModules)
   .sort((a, b) => {
     const numA = parseInt(a.match(/(\d+)(?!.*\d)/)?.[0] ?? "", 10);
@@ -58,6 +58,12 @@ const gallery = Object.keys(galleryModules)
     return a.localeCompare(b);
   })
   .map((path) => ({ src: galleryModules[path], alt: "Inside Baby Blossom Naturopathy Fertility & Wellness Clinic" }));
+if (gallery.length === 0 && typeof console !== "undefined") {
+  console.warn(
+    "[AboutUs] No gallery images matched src/assets/about_us/gallery/*.{jpg,jpeg,png,webp} — " +
+    "the gallery section will be hidden. Check the files actually committed at that path and their extensions."
+  );
+}
 // Quick-links to the three pillars of care, reusing the exact icon-badge
 // treatment from their home-page sections (service / wellness / journey)
 // so the visual language stays consistent site-wide.
@@ -222,7 +228,11 @@ export default function AboutUs() {
 
       {/* Gallery — a lightbox-style viewer: one large image at a time (both
           landscape and portrait shown fully, never cropped), prev/next
-          arrows, a counter pill, and a thumbnail strip below. */}
+          arrows, a counter pill, and a thumbnail strip below.
+          Guarded: if the gallery folder is empty for any reason (build-time
+          glob found nothing), this section simply doesn't render instead of
+          crashing the whole page on gallery[activeImg] being undefined. */}
+      {gallery.length > 0 && (
       <section className="au-gallery section-pad">
         <div className="wrap">
           <div className="head-center">
@@ -284,6 +294,7 @@ export default function AboutUs() {
           </Reveal>
         </div>
       </section>
+      )}
 
       {/* Approach */}
       <section className="au-approach section-pad">
@@ -376,7 +387,7 @@ export default function AboutUs() {
             <h2><AnimatedText text="Visit Us or Read" className="split-green" />{" "}<AnimatedText text="What Families Say" className="split-violet" delay={0.15} /></h2>
             <p className="au-visit__addr">{clinic.address}</p>
             <div className="au-visit__actions">
-              <a href="https://www.google.com/search?q=Baby+Blossom+Naturopathy+Fertility+%26+Wellness+Clinic+reviews" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+              <a href={clinic.reviewsUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
                 <svg viewBox="0 0 24 24" width="17" height="17"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" /><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.99.66-2.26 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.85A10.99 10.99 0 0 0 12 23z" /><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.85z" /><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.85C6.71 7.31 9.14 5.38 12 5.38z" /></svg>
                 Google Reviews
               </a>
