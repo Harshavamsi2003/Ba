@@ -1,4 +1,6 @@
 // src/components/Footer.jsx
+import { useCallback } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { clinic, nav } from "../data/site.js";
 import Reveal from "./Reveal.jsx";
 import logo from "../assets/logo/logo.png";
@@ -6,6 +8,30 @@ import "../styles/Footer.css";
 
 export default function Footer() {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  // Same routing logic as Navbar: "/#section" hash links scroll smoothly
+  // (navigating home first if needed), plain "/route" links use the
+  // router instead of a full page reload — this is what was 404ing on
+  // Vercel, since a full reload hit the server before the SPA fallback
+  // could kick in.
+  const handleNav = useCallback((e, to) => {
+    if (to.startsWith("/#")) {
+      e.preventDefault();
+      const hash = "#" + to.split("#")[1];
+      const scroll = () => {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+        else window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+      if (pathname !== "/") { navigate("/"); setTimeout(scroll, 80); }
+      else scroll();
+    } else {
+      e.preventDefault();
+      navigate(to);
+    }
+  }, [navigate, pathname]);
 
   return (
     <footer className="footer">
@@ -34,7 +60,11 @@ export default function Footer() {
         <Reveal className="footer__col footer__col--nav" delay={0.05}>
           <h5>Explore</h5>
           <ul>
-            {nav.map((n) => <li key={n.label}><a href={n.to}>{n.label}</a></li>)}
+            {nav.map((n) => (
+              <li key={n.label}>
+                <a href={n.to} onClick={(e) => handleNav(e, n.to)}>{n.label}</a>
+              </li>
+            ))}
           </ul>
         </Reveal>
 
