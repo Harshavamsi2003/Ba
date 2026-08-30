@@ -11,7 +11,7 @@
     },
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "babyblossom-rouge.vercel.app" }],
+      "has": [{ "type": "host", "value": "babyblossom-six.vercel.app" }],
       "destination": "https://www.babyblossomfertility.in/:path*",
       "permanent": true
     }
