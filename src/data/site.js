@@ -90,24 +90,44 @@ export const journeySteps = [
 // Real reviews from Google — shown one at a time (name + quote only).
 export const testimonials = [
   {
+    name: "Saranya Natarajan",
+    rating: 5,
+    quote: "I am diebetic, fortunately it has been reversed and living quality life with what has been taught by Dr. Vidya during wonderful journey with her. From the day 1 of consultation and treatment, I had convictional faith and trust in her which turned out to be exceptional result as one of the doctors in uk even amazed about the reversing process. I recommend people trust in the process and trust in her. Thanks Dr. Vidya. Wishing you the best.",
+  },
+  {
+    name: "Suganya S",
+    rating: 5,
+    quote: "We extremely satisfied with the care and treatment provided by the doctor. Doctor takes the time to listen carefully to the concerns of the patient. The diagnosis and treatment were explained clearly, which gave us confidence and peace of mind. I truly appreciate the doctor's dedication.",
+  },
+  {
+    name: "Muthu Janani",
+    rating: 5,
+    quote: "After two years of marriage, I experienced two miscarriages. I tried various treatments, but unfortunately, nothing worked for me. Later, my brother suggested that I consult Dr. Vidhya for a more natural approach. I followed her guidance and treatment plan carefully, and with her support, I was able to conceive naturally in 2023. Today, I am blessed with a healthy 2-year-old baby girl, and I am truly grateful to Dr. Vidhya for her guidance, care, and support throughout my journey. I sincerely recommend Dr. Vidhya to couples who are hoping to conceive naturally and have a healthy baby. My experience with her has been truly positive, and I will always be thankful for the support she gave me during such an important chapter of my life.",
+  },
+  {
     name: "Jayashree D",
+    rating: 5,
     quote: "I'm grateful to the doctor Vidya.. I took treatment for my fertility issue and was very happy with the care, support and personal attention. I got pregnant after two months of treatment. She takes time to understand the lifestyle, diet and overall well being and provides guidance accordingly. The treatment was natural and did not experience any side effects. I'm sincerely thankful to the doctor and highly recommend her to anyone looking for natural and holistic care.",
   },
   {
     name: "Karnan Palanisamy",
-    quote: "We are happy to share this memory with everyone for my brother. Finding Dr. Vidya was a true blessing. After four years of trying different treatments without success, her online naturopathy consultation provided the personalized, evidence-based care needed. By incorporating her sustainable lifestyle changes, dietary recommendations, yoga, and hydrotherapy into the routine, natural conception was achieved within 3 months, welcoming the first daughter. Two years later, a second natural conception followed. Dr. Vidya's patience, expertise, and thorough guidance made all the difference. We are deeply grateful and highly recommend her practice to anyone seeking natural fertility solutions.",
+    rating: 5,
+    quote: "We are happy share this memory to all for my brother. Finding Dr. Vidya was a true blessing. After four years of trying different treatments without success, after her online naturopathy consultation provided the personalized, evidence-based care I needed. By incorporating her sustainable lifestyle changes, dietary recommendations, yoga, and hydrotherapy into my routine, I naturally conceived within 3 months and welcomed my first daughter. Two years later, I experienced a second natural conception. Dr. Vidya's patience, expertise, and thorough guidance made all the difference. I am deeply grateful and highly recommend her practice to anyone seeking natural fertility solutions.",
   },
   {
     name: "Mohana Ponnusamy",
+    rating: 5,
     quote: "After 5 years of infertility, repeated laparoscopic surgeries for PCOS, and exhausting medical treatments, I had almost lost hope. Consulting Dr. C. Vidya at Baby Blossom Naturopathy Fertility and Wellness Clinic completely changed my life. Dr. Vidya's holistic approach and natural healing therapies healed my body from the root. Under her expert guidance, I finally conceived and became a mother to my precious baby! Even more amazingly, I conceived my second child completely naturally without any intervention. Dr. Vidya is a true blessing, and her clinic gave me the family I always dreamed of. Highly recommend Baby Blossom to anyone struggling with fertility!",
   },
   {
-    name: "Divakar Raja",
-    quote: "My wife and I came here with the hope of starting our journey towards parenthood, and we received excellent guidance from Dr. Vidya Madam. Her positive approach gave us confidence and helped us stay motivated throughout the journey. The naturopathy treatment focuses on lifestyle changes, diet, yoga, pranayama, and therapies, explained in a very simple and easy-to-understand way. After sincerely following the recommended diet, yoga, and pranayama, I noticed significant improvements in my overall well-being — my anger and anxiety reduced considerably, and I no longer had constipation issues. I also lost around 8 kg in one month. I felt much more relaxed, energetic, and lighter both mentally and physically. Thank you so much, Dr. Vidya Madam, for your wonderful guidance and support. Highly recommended!",
+    name: "Divya Bharathi",
+    rating: 5,
+    quote: "டாக்டர். வித்யா அவர்கள் எங்களுக்கு  நன்றாக சிகிச்சை அளித்தார். . எனக்கு இதற்கு முன்பு 3 முறை abortion ஆகி இருக்கு. நாங்கள் துவண்டு போன நேரத்தில் எங்களுக்கு மேடம் நம்பிக்கை கொடுத்தார். அவர் கூறிய உணவு முறை, உடற்பயிற்சி எல்லா -வற்றையும் சரியாக செய்து  இப்போது எங்களுக்கு ஒரு குட்டி தேவதை இருக்கிறாள். மிகவும் நன்றி மேடம்.",
   },
   {
-    name: "Divya Bharathi",
-    quote: "Dr. Vidya treated us well. I had 3 miscarriages before. Madam gave us hope when we were in despair. We followed the diet and exercise regimen she prescribed and now we have a little angel. Thank you very much, Madam.",
+    name: "Divakar Raja",
+    rating: 5,
+    quote: "My wife and I came here with the hope of starting our journey towards parenthood, and we received excellent guidance from Dr. Vidya Madam. Her positive approach gave us confidence and helped us stay motivated throughout the journey. The naturopathy treatment focuses on lifestyle changes, diet, yoga, pranayama, and therapies. Dr. Vidya explained everything in a very simple and easy-to-understand way, making it easy for us to follow. After sincerely following the recommended diet, yoga, and pranayama, I noticed significant improvements in my overall well-being. My anger and anxiety reduced considerably, and I no longer had constipation issues. I also lost around 8 kg in one month by consistently following the recommended lifestyle changes. During the treatment, I felt much more relaxed, energetic, and lighter both mentally and physically. I truly appreciate Dr. Vidya Madam for her complete guidance, support, and positive approach throughout our journey. Thank you so much, Dr. Vidya Madam, for your wonderful guidance and support. Highly recommended! 🙏",
   },
 ];
 
