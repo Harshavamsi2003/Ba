@@ -13,7 +13,7 @@ export default function Home() {
     <div id="main">
       <SEO
         title="Baby Blossom Naturopathy | Fertility & Wellness Clinic, Chennai"
-        description="Holistic, natural, evidence-based fertility care by Dr.C Vidya in Chennai — PCOS management, preconception care, yoga therapy and more."
+        description="Holistic, natural, evidence-based fertility care by Dr.C Vidya in Chennai — PMOS management, preconception care, yoga therapy and more."
         path="/"
       />
       <Hero />
