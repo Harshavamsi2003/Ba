@@ -1,5 +1,5 @@
 // src/components/Contact.jsx
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Reveal from "./Reveal.jsx";
 import AnimatedText from "./AnimatedText.jsx";
 import { clinic, services, WEB3FORMS_ACCESS_KEY } from "../data/site.js";
@@ -13,12 +13,24 @@ const Icon = ({ d }) => (
 // dashes) — good enough to catch typos without being overly strict.
 const PHONE_RE = /^[+]?[\d\s-]{10,15}$/;
 
-const initialForm = { name: "", phone: "", service: services[0].title, date: "", message: "" };
+const initialForm = { name: "", phone: "", service: services[0].title, date: "", message: "", botcheck: "" };
+
+// Spam guards (client-side, on top of enabling hCaptcha + domain
+// restriction in the Web3Forms dashboard — see README):
+// 1. "botcheck" — a field invisible to real visitors (hidden, not
+//    focusable, no label). Web3Forms silently discards any submission
+//    where it's filled in — real users never touch it, but bots that
+//    auto-fill every input on a form do.
+// 2. MIN_FILL_MS — a real person needs at least a couple of seconds to
+//    read the form and type into it. Submissions faster than this are
+//    almost always scripted and are dropped without hitting the API.
+const MIN_FILL_MS = 2500;
 
 export default function Contact() {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle"); // idle | loading | success | error
+  const mountedAt = useRef(Date.now());
 
   const update = (k) => (e) => {
     setForm({ ...form, [k]: e.target.value });
@@ -37,6 +49,17 @@ export default function Contact() {
     e.preventDefault();
     if (!validate()) return;
 
+    // Bot signals: honeypot filled in, or submitted too fast to be human.
+    // Fail "successfully" without calling the API — showing an error
+    // instead would just teach the bot what tripped the filter.
+    const isBot = form.botcheck.trim() !== "" || Date.now() - mountedAt.current < MIN_FILL_MS;
+    if (isBot) {
+      setStatus("success");
+      setForm(initialForm);
+      mountedAt.current = Date.now();
+      return;
+    }
+
     setStatus("loading");
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
@@ -51,6 +74,7 @@ export default function Contact() {
           service: form.service,
           preferred_date: form.date || "Not specified",
           message: form.message || "—",
+          botcheck: form.botcheck,
         }),
       });
       const data = await res.json();
@@ -116,13 +140,25 @@ export default function Contact() {
                 </span>
                 <h3>Form Submitted!</h3>
                 <p>Thank you — we've received your request and will get back to you shortly. You can also reach us directly on WhatsApp any time.</p>
-                <button type="button" className="btn btn-ghost" onClick={() => setStatus("idle")}>
+                <button type="button" className="btn btn-ghost" onClick={() => { setStatus("idle"); mountedAt.current = Date.now(); }}>
                   Send Another Request
                 </button>
               </div>
             ) : (
               <form className="contact__form" onSubmit={submit} noValidate>
                 <h3>Book Your Appointment</h3>
+
+                {/* Honeypot — invisible to real visitors, tempting to bots */}
+                <input
+                  type="text"
+                  name="botcheck"
+                  value={form.botcheck}
+                  onChange={update("botcheck")}
+                  autoComplete="off"
+                  tabIndex="-1"
+                  aria-hidden="true"
+                  className="contact__hp"
+                />
 
                 <label className="field">
                   <span>Full Name</span>
