@@ -8,12 +8,6 @@
       "has": [{ "type": "host", "value": "babyblossomfertility.in" }],
       "destination": "https://www.babyblossomfertility.in/:path*",
       "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "babyblossom-six.vercel.app" }],
-      "destination": "https://www.babyblossomfertility.in/:path*",
-      "permanent": true
     }
   ],
   "rewrites": [
