@@ -9,7 +9,7 @@ import AnimatedText from "../components/AnimatedText.jsx";
 import CountUp from "../components/CountUp.jsx";
 import { company, founder, stats, values, clinic } from "../data/site.js";
 import portrait from "../assets/founder/founder_vidya.jpg";
-import logo from "../assets/logo/logo.png";
+import logo from "../assets/logo/logo-small.png";
 import wellnessD from "../assets/about_us/wellness_d.jpg";
 import wellnessM from "../assets/about_us/wellness_m.jpg";
 import statFamilies from "../assets/icons/stats/happy_families.png";
@@ -44,8 +44,18 @@ const galleryModules = import.meta.glob("../assets/about_us/gallery/*.{jpg,jpeg,
   eager: true,
   import: "default",
 });
+// Numeric-aware sort: pulls the number out of each filename (1.jpeg,
+// 07-waiting-area.jpg, etc.) and orders by that, not by plain string
+// comparison — a plain string sort would put "10.jpeg" between "1" and
+// "2" once a filename goes past a single digit. Files with no number in
+// the name fall back to alphabetical, so nothing crashes if one shows up.
 const gallery = Object.keys(galleryModules)
-  .sort()
+  .sort((a, b) => {
+    const numA = parseInt(a.match(/(\d+)(?!.*\d)/)?.[0] ?? "", 10);
+    const numB = parseInt(b.match(/(\d+)(?!.*\d)/)?.[0] ?? "", 10);
+    if (!Number.isNaN(numA) && !Number.isNaN(numB) && numA !== numB) return numA - numB;
+    return a.localeCompare(b);
+  })
   .map((path) => ({ src: galleryModules[path], alt: "Inside Baby Blossom Naturopathy Fertility & Wellness Clinic" }));
 // Quick-links to the three pillars of care, reusing the exact icon-badge
 // treatment from their home-page sections (service / wellness / journey)
