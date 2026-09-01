@@ -4,12 +4,16 @@
   padding:20px 0;animation:nav-enter .5s ease both}
 @keyframes nav-enter{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.nav{animation:none}}
-.nav__inner{display:flex;align-items:center;justify-content:space-between;gap:clamp(14px,2vw,32px)}
-/* left-nudge only applies once the full desktop menu is showing — on tablet/
-   mobile the bar collapses to logo + burger and needs its normal edge spacing,
-   not shifted, or the logo gets pushed toward/off the left edge. */
-@media(min-width:1121px){
-  .nav__inner{transform:translateX(-30px)}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;gap:clamp(14px,2vw,32px);
+  flex-wrap:nowrap}
+/* The bar carries more than a normal content row (brand + 7 links + CTA), so
+   once the full desktop menu is showing it gets a slightly wider track than
+   the 1240px page wrap — enough that brand, menu and CTA never collide, but
+   narrow enough that the gaps either side of the menu stay tight and the
+   brand/CTA sit inset from the edges rather than in the corners. Below that
+   width the bar collapses to logo + burger and uses the normal page gutters. */
+@media(min-width:1201px){
+  .nav .wrap.nav__inner{max-width:min(1460px,100%);padding:0 clamp(24px,2.8vw,48px)}
 }
 
 /* states */
@@ -35,7 +39,10 @@
 .nav--dark{--nav-fg:#FBFAFF;--nav-sub:rgba(251,250,255,.8);--nav-accent:#C6DA00;--nav-brand:#FBFAFF}
 
 /* ---------- brand ---------- */
-.nav__brand{display:flex;align-items:center;gap:14px;flex-shrink:0}
+/* the brand is the only flexible item in the bar: if space ever runs short it
+   gives way quietly instead of shoving the menu / burger off the edge */
+.nav__brand{display:flex;align-items:center;gap:14px;flex:0 1 auto;min-width:0}
+.nav__brandtxt{min-width:0;overflow:hidden}
 .nav__logowrap{position:relative;flex-shrink:0;border-radius:50%;display:flex}
 .nav__logowrap::before{content:"";position:absolute;inset:-5px;border-radius:50%;
   background:conic-gradient(from 0deg,var(--indigo),var(--lime),var(--indigo));
@@ -48,12 +55,14 @@
 
 .nav__brandtxt b{font-family:var(--serif);font-size:1.62rem;font-weight:700;letter-spacing:.4px;display:block;
   line-height:1.12;color:var(--nav-brand);white-space:nowrap;transition:color .4s,font-size .4s}
-.nav__brandtxt small{font-size:.72rem;font-weight:600;letter-spacing:1.8px;color:var(--nav-sub);
-  text-transform:uppercase;white-space:nowrap;transition:color .4s}
+/* slightly tighter tracking than before so the extra word ("Clinic") fits in
+   roughly the same width the old two-word line took */
+.nav__brandtxt small{font-size:.71rem;font-weight:700;letter-spacing:1.1px;color:var(--nav-sub);
+  text-transform:uppercase;white-space:nowrap;transition:color .4s,font-size .4s,letter-spacing .4s}
 .nav--scrolled .nav__brandtxt b{font-size:1.48rem}
 
 /* ---------- primary menu ---------- */
-.nav__menu{display:flex;gap:4px;align-items:center}
+.nav__menu{display:flex;gap:4px;align-items:center;flex-shrink:0}
 .nav__menu a{display:flex;align-items:center;font-family:var(--sans);font-size:1rem;font-weight:500;
   letter-spacing:.2px;color:var(--nav-fg);padding:11px 18px;border-radius:30px;position:relative;
   white-space:nowrap;overflow:hidden;transition:color .3s ease}
@@ -121,31 +130,54 @@
    of dropping sharply at fixed breakpoints, so the menu never looks cramped
    or "too small" at in-between laptop widths — it stays legible and premium
    right up until it collapses into the hamburger panel. */
-@media(max-width:1360px){
+@media(max-width:1400px){
   .nav__menu{gap:0}
-  .nav__menu a{padding:11px 14px;font-size:clamp(.86rem,.7vw + .58rem,1rem)}
-  .nav__cta{padding:12px 22px;font-size:.86rem}
+  .nav__menu a{padding:11px 13px;font-size:clamp(.86rem,.7vw + .58rem,1rem)}
+  .nav__cta{padding:12px 20px;font-size:.86rem}
+  .nav__brandtxt b{font-size:1.44rem}
+  .nav__brandtxt small{font-size:.67rem;letter-spacing:.85px}
 }
-@media(max-width:1180px){
-  .nav__brandtxt b{font-size:1.4rem}
-  .nav__brandtxt small{font-size:.7rem;letter-spacing:1.4px}
+@media(max-width:1280px){
+  .nav__menu a{padding:11px 11px}
+  .nav__cta{padding:11px 18px;font-size:.82rem}
+  .nav__brandtxt b{font-size:1.34rem}
+  .nav__brandtxt small{font-size:.63rem;letter-spacing:.55px}
 }
-/* tablet & below: collapse to the hamburger + slide-in panel so nothing ever wraps or clips */
-@media(max-width:1120px){
+/* tablet & below: collapse to the hamburger + slide-in panel so nothing ever wraps or clips.
+   Raised from 1120px to 1200px: the brand line is a word longer now, and below
+   ~1200px the seven links + CTA no longer clear it with room to spare. */
+@media(max-width:1200px){
   .nav .nav__menu,.nav .nav__cta{display:none !important}
   .nav .nav__burger{display:flex}
+  .nav__brandtxt b{font-size:1.48rem}
+  .nav__brandtxt small{font-size:.78rem;letter-spacing:1.1px}
 }
-@media(max-width:480px){
-  .nav__logo{width:56px;height:56px}
-  .nav--scrolled .nav__logo{width:50px;height:50px}
-  .nav__brandtxt b{font-size:1.42rem;letter-spacing:.3px}
-  .nav--scrolled .nav__brandtxt b{font-size:1.34rem}
-  .nav__brandtxt small{font-size:.72rem;letter-spacing:1.2px}
+
+/* ---------- phones ----------
+   The bar here is only logo + brand + burger, and the brand line stays on ONE
+   line. Because that line has to survive on a 320px screen, its size is tied
+   to the viewport (clamp + vw) rather than to fixed per-device breakpoints:
+   it grows to .7rem on a large phone and eases down on a small one, always
+   landing just inside the width left over beside the logo and burger. Weight
+   700 and the stronger foreground colour keep it readable at the smaller end
+   instead of fading into a grey hairline. */
+@media(max-width:520px){
+  .nav .wrap{padding:0 14px}
+  .nav__brand{gap:11px}
+  .nav__logo{width:54px;height:54px}
+  .nav--scrolled .nav__logo{width:48px;height:48px}
+  .nav__brandtxt b{font-size:1.48rem;letter-spacing:.3px}
+  .nav--scrolled .nav__brandtxt b{font-size:1.4rem}
+  .nav__brandtxt small{font-size:clamp(.44rem,2.15vw,.7rem);
+    letter-spacing:clamp(.1px,.05vw,.5px);line-height:1.35;color:var(--nav-fg)}
 }
-@media(max-width:330px){
-  .nav__logo{width:50px;height:50px}
-  .nav--scrolled .nav__logo{width:46px;height:46px}
-  .nav__brandtxt b{font-size:1.22rem}
-  .nav__brandtxt small{font-size:.66rem;letter-spacing:.9px}
+@media(max-width:360px){
+  .nav__logo{width:48px;height:48px}
+  .nav--scrolled .nav__logo{width:44px;height:44px}
+  .nav__brandtxt b{font-size:1.32rem}
+  .nav--scrolled .nav__brandtxt b{font-size:1.26rem}
 }
-@media(max-width:280px){ .nav__brandtxt small{display:none} }
+@media(max-width:300px){
+  .nav .wrap{padding:0 12px}
+  .nav__brandtxt b{font-size:1.16rem}
+}
