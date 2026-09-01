@@ -162,14 +162,16 @@
    700 and the stronger foreground colour keep it readable at the smaller end
    instead of fading into a grey hairline. */
 @media(max-width:520px){
-  .nav .wrap{padding:0 14px}
+  .nav .wrap{padding:0 10px}
+  .nav__inner{gap:10px}
   .nav__brand{gap:11px}
+  .nav__burger{padding:8px 6px}
   .nav__logo{width:54px;height:54px}
   .nav--scrolled .nav__logo{width:48px;height:48px}
   .nav__brandtxt b{font-size:1.48rem;letter-spacing:.3px}
   .nav--scrolled .nav__brandtxt b{font-size:1.4rem}
-  .nav__brandtxt small{font-size:clamp(.44rem,2.15vw,.7rem);
-    letter-spacing:clamp(.1px,.05vw,.5px);line-height:1.35;color:var(--nav-fg)}
+  .nav__brandtxt small{font-size:clamp(.48rem,2.7vw,.8rem);
+    letter-spacing:clamp(.1px,.045vw,.45px);line-height:1.35;color:var(--nav-fg)}
 }
 @media(max-width:360px){
   .nav__logo{width:48px;height:48px}
@@ -177,7 +179,12 @@
   .nav__brandtxt b{font-size:1.32rem}
   .nav--scrolled .nav__brandtxt b{font-size:1.26rem}
 }
+/* smallest phones: ease the growth rate back so the line still clears the
+   burger once the fixed items (logo, gutters, burger) eat a bigger share */
+@media(max-width:340px){
+  .nav__brandtxt small{font-size:2.45vw;letter-spacing:.08px}
+}
 @media(max-width:300px){
-  .nav .wrap{padding:0 12px}
+  .nav__logo{width:44px;height:44px}
   .nav__brandtxt b{font-size:1.16rem}
 }
