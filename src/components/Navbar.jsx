@@ -55,6 +55,16 @@ export default function Navbar() {
     }
   }, [navigate, pathname]);
 
+  // active-link detection: a plain page ("/about-us") matches the pathname exactly;
+  // a hash link ("/#services") is only ever "active" on the home route, and only
+  // for the Home item itself when we're right at the top — otherwise leave every
+  // hash item unlit so we never highlight several links at once.
+  const isActive = (to) => {
+    if (to === "/#home") return pathname === "/";
+    if (to.startsWith("/#")) return false;
+    return pathname === to;
+  };
+
   const cls = `nav ${open ? "nav--open nav--scrolled" : (scrolled ? "nav--scrolled" : "nav--top")} nav--${open ? "light" : theme}`;
 
   return (
@@ -62,7 +72,9 @@ export default function Navbar() {
       <a href="#main" className="skip-link">Skip to content</a>
       <div className="wrap nav__inner">
         <a href="/" className="nav__brand" onClick={(e) => handleNav(e, "/#home")} aria-label={clinic.full}>
-          <img src={logo} alt="" className="nav__logo" />
+          <span className="nav__logowrap">
+            <img src={logo} alt="" className="nav__logo" />
+          </span>
           <span className="nav__brandtxt">
             <b>{clinic.name}</b>
             <small>Naturopathy Fertility &amp; Wellness</small>
@@ -71,14 +83,20 @@ export default function Navbar() {
 
         <nav className="nav__menu" aria-label="Primary">
           {nav.map((item) => (
-            <a key={item.label} href={item.to} onClick={(e) => handleNav(e, item.to)}>
+            <a
+              key={item.label}
+              href={item.to}
+              onClick={(e) => handleNav(e, item.to)}
+              className={isActive(item.to) ? "is-active" : ""}
+              aria-current={isActive(item.to) ? "page" : undefined}
+            >
               <span>{item.label}</span>
             </a>
           ))}
         </nav>
 
         <a href="/#contact" className="nav__cta" onClick={(e) => handleNav(e, "/#contact")}>
-          Book Appointment
+          <span>Book Appointment</span>
         </a>
 
         <button
@@ -108,6 +126,7 @@ export default function Navbar() {
               <nav className="nav__panel-links">
                 {nav.map((item, i) => (
                   <motion.a key={item.label} href={item.to} onClick={(e) => handleNav(e, item.to)}
+                    className={isActive(item.to) ? "is-active" : ""}
                     initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.08 + i * 0.06 }}>
                     {item.label}
