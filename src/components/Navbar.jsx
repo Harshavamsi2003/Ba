@@ -1,35 +1,69 @@
 // src/components/Navbar.jsx
-import { useState, useEffect, useCallback } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { nav, clinic } from "../data/site.js";
 import logo from "../assets/logo/logo.png";
 import "../styles/Navbar.css";
 
+// Section ids that have a nav entry ("/#services" -> "services"), in nav order.
+// These are the only sections the scroll-spy watches, so exactly one link lights up.
+const SPY_IDS = nav.filter((i) => i.to.startsWith("/#")).map((i) => i.to.slice(2));
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState("light"); // text theme over current section
   const [open, setOpen] = useState(false);
+  const [activeId, setActiveId] = useState(SPY_IDS[0] || "");
+  const headerRef = useRef(null);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const NAV_H = 74;
-    const onScroll = () => {
+    let raf = 0;
+
+    const measure = () => {
+      raf = 0;
+      const navH = headerRef.current?.offsetHeight || 74;
       setScrolled(window.scrollY > 30);
-      // find the section currently under the navbar to adapt text colour
-      const secs = document.querySelectorAll("[data-navtheme]");
+
+      // adapt nav text colour to whatever section sits under the bar
       let t = "light";
-      secs.forEach((s) => {
+      document.querySelectorAll("[data-navtheme]").forEach((s) => {
         const r = s.getBoundingClientRect();
-        if (r.top <= NAV_H && r.bottom > NAV_H) t = s.getAttribute("data-navtheme");
+        if (r.top <= navH && r.bottom > navH) t = s.getAttribute("data-navtheme");
       });
       setTheme(t);
+
+      // ---- scroll-spy: which on-page section are we in? (home route only) ----
+      if (pathname === "/") {
+        const line = navH + 30; // just below the bar; matches section scroll-margin-top
+        let current = "";
+        SPY_IDS.forEach((id) => {
+          const el = document.getElementById(id);
+          if (el && el.getBoundingClientRect().top <= line) current = id;
+        });
+        // at the very bottom, always light the last tracked section
+        const atBottom =
+          window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+        if (atBottom) {
+          for (let i = SPY_IDS.length - 1; i >= 0; i--) {
+            if (document.getElementById(SPY_IDS[i])) { current = SPY_IDS[i]; break; }
+          }
+        }
+        setActiveId(current || SPY_IDS[0] || "");
+      } else {
+        setActiveId("");
+      }
     };
-    onScroll();
+
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(measure); };
+
+    measure();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
+      if (raf) cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
@@ -41,10 +75,10 @@ export default function Navbar() {
     setOpen(false);
     if (to.startsWith("/#")) {
       e.preventDefault();
-      const hash = "#" + to.split("#")[1];
+      const id = to.slice(2);
       const scroll = () => {
-        const el = document.querySelector(hash);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
+        const el = document.getElementById(id);
+        if (el && id !== "home") el.scrollIntoView({ behavior: "smooth" });
         else window.scrollTo({ top: 0, behavior: "smooth" });
       };
       if (pathname !== "/") { navigate("/"); setTimeout(scroll, 80); }
@@ -55,20 +89,17 @@ export default function Navbar() {
     }
   }, [navigate, pathname]);
 
-  // active-link detection: a plain page ("/about-us") matches the pathname exactly;
-  // a hash link ("/#services") is only ever "active" on the home route, and only
-  // for the Home item itself when we're right at the top — otherwise leave every
-  // hash item unlit so we never highlight several links at once.
-  const isActive = (to) => {
-    if (to === "/#home") return pathname === "/";
-    if (to.startsWith("/#")) return false;
-    return pathname === to;
-  };
+  // Active-link rules, mutually exclusive so only ever one link is lit:
+  //  - a hash link ("/#services") lights only on the home route, and only when
+  //    the scroll-spy says that section is the one under the bar;
+  //  - a page link ("/about-us") lights only when it is the current route.
+  const isActive = (to) =>
+    to.startsWith("/#") ? pathname === "/" && to.slice(2) === activeId : pathname === to;
 
   const cls = `nav ${open ? "nav--open nav--scrolled" : (scrolled ? "nav--scrolled" : "nav--top")} nav--${open ? "light" : theme}`;
 
   return (
-    <header className={cls}>
+    <header className={cls} ref={headerRef}>
       <a href="#main" className="skip-link">Skip to content</a>
       <div className="wrap nav__inner">
         <a href="/" className="nav__brand" onClick={(e) => handleNav(e, "/#home")} aria-label={clinic.full}>
@@ -77,7 +108,7 @@ export default function Navbar() {
           </span>
           <span className="nav__brandtxt">
             <b>{clinic.name}</b>
-            <small>Naturopathy Fertility &amp; Wellness</small>
+            <small>Naturopathy Fertility &amp; Wellness Clinic</small>
           </span>
         </a>
 
@@ -127,6 +158,7 @@ export default function Navbar() {
                 {nav.map((item, i) => (
                   <motion.a key={item.label} href={item.to} onClick={(e) => handleNav(e, item.to)}
                     className={isActive(item.to) ? "is-active" : ""}
+                    aria-current={isActive(item.to) ? "page" : undefined}
                     initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.08 + i * 0.06 }}>
                     {item.label}
