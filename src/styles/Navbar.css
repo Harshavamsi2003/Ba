@@ -1,8 +1,8 @@
 /* src/styles/Navbar.css — premium navbar, matched to site theme */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;
   transition:padding .4s cubic-bezier(.2,.8,.2,1),background .4s,box-shadow .4s,border-color .4s;
-  padding:20px 0;animation:nav-enter .6s ease both}
-@keyframes nav-enter{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+  padding:20px 0;animation:nav-enter .5s ease both}
+@keyframes nav-enter{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.nav{animation:none}}
 .nav__inner{display:flex;align-items:center;justify-content:space-between;gap:clamp(14px,2vw,32px)}
 /* left-nudge only applies once the full desktop menu is showing — on tablet/
