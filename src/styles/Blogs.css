@@ -22,7 +22,7 @@
 
 .blog-card article h4{font-size:clamp(1.12rem,1.6vw,1.28rem);color:var(--tone);
   margin:16px 0 10px;line-height:1.28}
-.blog-card article p{font-size:clamp(.86rem,1vw,.9rem);color:var(--muted);line-height:1.68;flex:1}
+.blog-card article p{font-size:clamp(.94rem,1.05vw,.98rem);color:var(--muted);line-height:1.68;flex:1;font-weight:500}
 
 .blog-card__rule{display:block;width:30px;height:2px;
   background:linear-gradient(90deg,var(--tone),var(--tone-mid));opacity:.6;margin-top:18px;transition:width .35s ease}
