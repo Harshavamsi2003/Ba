@@ -19,7 +19,7 @@
 .au-back svg{width:18px;height:18px}
 .au-back:hover{gap:12px;color:var(--indigo-deep)}
 .au-intro h1{font-size:clamp(2.4rem,5vw,3.6rem);margin:8px 0 18px}
-.au-intro__lede{font-size:1.1rem;color:var(--muted);margin-bottom:0;line-height:1.85}
+.au-intro__lede{font-size:1.15rem;color:var(--muted);margin-bottom:0;line-height:1.85;font-weight:500}
 
 /* ---- logo mark: no ring, no circle backdrop — just the mark itself,
    with a soft NEUTRAL shadow (continuous float/scale/tilt animation is
@@ -98,7 +98,7 @@
 .au-overview__card h4{font-size:1.2rem;color:var(--indigo-deep);margin-bottom:8px}
 .au-overview__card:nth-child(2) h4{color:var(--lime-deep)}
 .au-overview__card:nth-child(3) h4{color:var(--heart)}
-.au-overview__card p{font-size:.88rem;color:var(--muted);line-height:1.6;margin-bottom:16px}
+.au-overview__card p{font-size:.95rem;color:var(--muted);line-height:1.6;margin-bottom:16px;font-weight:500}
 .au-overview__link{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;
   letter-spacing:.3px;color:var(--indigo);margin-top:auto;transition:gap .3s ease}
 .au-overview__card:nth-child(2) .au-overview__link{color:var(--lime-deep)}
@@ -159,7 +159,7 @@
 .au-value:hover .au-value__icon::after{opacity:.45;transform:scale(1.14)}
 
 .au-value h4{font-family:var(--serif);font-size:1.16rem;color:var(--indigo-deep);margin-bottom:8px}
-.au-value p{font-size:.86rem;color:var(--muted);line-height:1.6;max-width:230px}
+.au-value p{font-size:.93rem;color:var(--muted);line-height:1.6;max-width:230px;font-weight:500}
 
 @media(max-width:900px){
   .au-values__grid{grid-template-columns:repeat(2,1fr);row-gap:36px}
@@ -250,14 +250,14 @@
 .au-approach__card:hover::before{transform:scaleX(1)}
 .au-approach__card h4{font-size:1.14rem;margin-bottom:8px;color:var(--indigo-deep)}
 .au-approach__card:nth-child(even) h4{color:var(--lime-deep)}
-.au-approach__card p{font-size:.9rem;color:var(--muted);line-height:1.6}
+.au-approach__card p{font-size:.97rem;color:var(--muted);line-height:1.6;font-weight:500}
 
 /* ===== Why + founder teaser ===== */
 .au-why{padding:clamp(52px,6.5vw,88px) 0}
 .au-why__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4.5vw,60px);align-items:center}
 .au-why__list-wrap h2{font-size:clamp(1.6rem,3vw,2.2rem);margin:10px 0 20px}
 .au-why__list{display:grid;gap:14px}
-.au-why__list li{display:flex;align-items:flex-start;gap:12px;color:var(--charcoal);line-height:1.55}
+.au-why__list li{display:flex;align-items:flex-start;gap:12px;color:var(--charcoal);line-height:1.55;font-size:1.02rem;font-weight:500}
 .au-why__list svg{width:22px;height:22px;flex-shrink:0;padding:4px;border-radius:50%;
   background:var(--lime-tint);color:var(--lime-deep);margin-top:1px}
 .au-why__list li:nth-child(even) svg{background:var(--indigo-tint);color:var(--indigo)}
@@ -268,7 +268,7 @@
 .au-why__photo img{width:100%;height:100%;object-fit:cover}
 .au-why__founder-body h3{font-size:1.35rem;color:var(--indigo-deep);margin-top:4px}
 .au-why__creds{font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--lime-deep);font-weight:600;margin:4px 0 8px}
-.au-why__founder-body p{font-size:.9rem;color:var(--muted);line-height:1.6;margin-bottom:16px}
+.au-why__founder-body p{font-size:.97rem;color:var(--muted);line-height:1.6;margin-bottom:16px;font-weight:500}
 
 /* ===== Visit / Reviews ===== */
 .au-visit{background:var(--ivory);padding:clamp(52px,6.5vw,84px) 0;text-align:center;border-top:1px solid var(--line)}
@@ -296,5 +296,5 @@
   background:radial-gradient(circle at 84% 12%,rgba(198,218,0,.16),transparent 48%)}
 .au-cta__inner{position:relative;z-index:1}
 .au-cta__inner h2{font-size:clamp(2rem,4vw,2.9rem);margin-bottom:14px}
-.au-cta__inner p{color:var(--muted);max-width:520px;margin:0 auto 28px}
+.au-cta__inner p{color:var(--muted);max-width:520px;margin:0 auto 28px;font-size:1.05rem;font-weight:500}
 .au-cta__actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
