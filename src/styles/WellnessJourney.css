@@ -30,7 +30,7 @@
 .wj-program:hover::before{transform:scaleX(1)}
 .wj-program .icon-badge{margin:0 auto 16px}
 .wj-program h4{font-size:clamp(1.08rem,1.6vw,1.24rem);color:var(--tone);margin-bottom:8px;transition:color .3s ease}
-.wj-program p{font-size:clamp(.82rem,1vw,.86rem);color:var(--muted);line-height:1.6}
+.wj-program p{font-size:clamp(.9rem,1.05vw,.95rem);color:var(--muted);line-height:1.6;font-weight:500}
 
 /* ---- Journey ---- */
 /* ---- Journey (LIGHT lavender band) ---- */
@@ -61,7 +61,7 @@
 @keyframes wj-ring-spin{to{transform:rotate(360deg)}}
 
 .wj-step h4{font-size:1.06rem;color:var(--indigo-deep);margin-bottom:6px}
-.wj-step p{font-size:.79rem;color:var(--muted);line-height:1.5}
+.wj-step p{font-size:.85rem;color:var(--muted);line-height:1.5;font-weight:500}
 
 @media(prefers-reduced-motion:reduce){
   .wj-step .icon-badge--journey::after{animation:none}
@@ -78,9 +78,9 @@
   .wj-programs__grid{grid-template-columns:1fr;gap:16px}
   .wj-program{padding:26px 20px;border-radius:16px}
   .wj-program h4{font-size:1.05rem;line-height:1.2}
-  .wj-program p{font-size:.8rem;line-height:1.55}
+  .wj-program p{font-size:.87rem;line-height:1.55;font-weight:500}
   .wj-journey__track{grid-template-columns:repeat(2,1fr);gap:30px 14px}
   .wj-step h4{font-size:.9rem}
-  .wj-step p{font-size:.75rem}
+  .wj-step p{font-size:.82rem}
   .wj-step__tag{font-size:.6rem;letter-spacing:1.3px}
 }
