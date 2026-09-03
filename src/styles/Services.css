@@ -49,7 +49,7 @@
 .service-card:hover .icon-badge--service::after{opacity:.9;transform:rotate(0deg) scale(1)}
 
 .service-card h4{font-size:clamp(1.08rem,1.6vw,1.24rem);color:var(--tone);margin-bottom:8px;line-height:1.25;transition:color .3s ease}
-.service-card p{font-size:clamp(.82rem,1vw,.86rem);color:var(--muted);line-height:1.65}
+.service-card p{font-size:clamp(.9rem,1.05vw,.95rem);color:var(--muted);line-height:1.65;font-weight:500}
 .service-card__rule{display:block;width:34px;height:2px;background:linear-gradient(90deg,var(--tone),var(--tone-mid));opacity:.6;margin:16px auto 0;transition:width .45s,opacity .45s}
 .service-card:hover .service-card__rule{width:54px;opacity:1}
 
@@ -67,5 +67,5 @@
 @media(max-width:360px){
   .service-card{padding:24px 18px 22px}
   .service-card h4{font-size:1.02rem}
-  .service-card p{font-size:.8rem}
+  .service-card p{font-size:.87rem;font-weight:500}
 }
