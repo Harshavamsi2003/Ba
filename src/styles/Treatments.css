@@ -16,7 +16,7 @@
 .tr-hero h1{font-size:clamp(2.15rem,4.6vw,3.3rem);margin:10px 0 18px;line-height:1.18}
 .tr-hero__sub{font-family:var(--sans);font-weight:500;font-size:clamp(1.02rem,1.4vw,1.16rem);
   color:var(--indigo-deep);line-height:1.7;margin-bottom:16px}
-.tr-hero__lede{color:var(--muted);line-height:1.85;margin-bottom:0}
+.tr-hero__lede{color:var(--muted);line-height:1.85;margin-bottom:0;font-size:1.08rem;font-weight:500}
 
 /* ---- Treatment list — clean boxed cards, alternating image side,
    flows directly beneath the hero with no dead space in between ---- */
@@ -42,7 +42,7 @@
 .tr-item__body{padding:clamp(28px,3.2vw,40px) clamp(26px,3vw,38px);display:flex;flex-direction:column;justify-content:center}
 .tr-item__body h2{font-size:clamp(1.4rem,2.2vw,1.8rem);color:var(--indigo-deep);margin-bottom:12px}
 .tr-card:nth-child(even) .tr-item__body h2{color:var(--lime-deep)}
-.tr-item__desc{color:var(--charcoal);line-height:1.8}
+.tr-item__desc{color:var(--charcoal);line-height:1.8;font-size:1rem;font-weight:500}
 
 .tr-item__line{display:block;width:44px;height:3px;border-radius:2px;margin:20px 0;
   background:linear-gradient(90deg,var(--indigo),var(--lime));transition:width .5s ease}
@@ -57,7 +57,7 @@
 .tr-item__benefit h4{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:1.4px;
   text-transform:uppercase;color:var(--indigo);margin-bottom:6px}
 .tr-item__benefit--fertility h4{color:var(--lime-deep)}
-.tr-item__benefit p{font-size:.85rem;color:var(--charcoal);line-height:1.6}
+.tr-item__benefit p{font-size:.92rem;color:var(--charcoal);line-height:1.6;font-weight:500}
 
 @media(max-width:860px){
   .tr-item, .tr-item--rev{grid-template-columns:1fr}
@@ -73,5 +73,5 @@
 /* ---- CTA ---- */
 .tr-cta{background:linear-gradient(165deg,#F1EDFC,#E7E1F9);text-align:center;padding:clamp(60px,8vw,100px) 0;border-top:1px solid var(--line)}
 .tr-cta__inner h2{font-size:clamp(2rem,4vw,2.9rem);margin-bottom:14px}
-.tr-cta__inner p{color:var(--muted);max-width:520px;margin:0 auto 28px}
+.tr-cta__inner p{color:var(--muted);max-width:520px;margin:0 auto 28px;font-size:1.05rem;font-weight:500}
 .tr-cta__actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
