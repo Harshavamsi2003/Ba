@@ -75,7 +75,7 @@ section[id]{scroll-margin-top:86px}
 
 .head-center{text-align:center;max-width:660px;margin:0 auto clamp(40px,6vw,64px)}
 .head-center h2{font-size:clamp(2.1rem,4.4vw,3.25rem);margin-top:14px}
-.head-center p{color:var(--muted);margin-top:14px}
+.head-center p{color:var(--muted);margin-top:14px;font-size:1.02rem;font-weight:500}
 
 /* ============ UNIFORM two-tone heading system ============
    Every primary headline on the site (page h1s and top-level section
