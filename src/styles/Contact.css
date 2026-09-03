@@ -6,7 +6,7 @@
   flex-shrink:0;color:var(--rose);box-shadow:var(--shadow-soft);position:relative}
 .contact__ic svg{width:20px;height:20px;position:absolute}
 .contact__line b{display:block;font-family:var(--serif);font-size:1.15rem;color:var(--olive);margin-bottom:2px;overflow-wrap:anywhere}
-.contact__line span,.contact__line a{font-size:.9rem;color:var(--muted);line-height:1.5;overflow-wrap:anywhere}
+.contact__line span,.contact__line a{font-size:.96rem;color:var(--muted);line-height:1.5;overflow-wrap:anywhere;font-weight:500}
 .contact__line>div{min-width:0}
 .contact__line a:hover{color:var(--rose)}
 .contact__map{margin-top:8px;border-radius:var(--radius);overflow:hidden;height:280px;box-shadow:var(--shadow-soft);border:1px solid var(--line)}
@@ -38,7 +38,7 @@
   background:var(--lime-tint);color:var(--lime-deep);margin-bottom:18px}
 .contact__success-icon svg{width:30px;height:30px}
 .contact__success h3{font-size:1.6rem;color:var(--indigo-deep);margin-bottom:10px}
-.contact__success p{color:var(--muted);line-height:1.7;max-width:38ch;margin-bottom:22px}
+.contact__success p{color:var(--muted);line-height:1.7;max-width:38ch;margin-bottom:22px;font-size:1.02rem;font-weight:500}
 
 @media(max-width:900px){.contact__grid{grid-template-columns:1fr}}
 
