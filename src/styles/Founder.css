@@ -23,7 +23,7 @@
 .fd-quals{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px;list-style:none;padding:0}
 .fd-quals li{font-size:.76rem;font-weight:500;letter-spacing:.4px;color:var(--indigo);
   background:var(--indigo-tint);padding:6px 14px;border-radius:20px;white-space:nowrap}
-.fd-bio{color:var(--muted);margin-top:20px;line-height:1.85}
+.fd-bio{color:var(--muted);margin-top:20px;line-height:1.85;font-size:1.08rem;font-weight:500}
 .fd-quote{margin:24px 0;padding:14px 0 14px 22px;border-left:3px solid var(--lime);
   font-family:var(--serif);font-size:1.28rem;font-style:italic;color:var(--indigo-deep);line-height:1.5}
 .fd-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
@@ -32,7 +32,7 @@
 .fd-story__cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3.4vw,40px)}
 .fd-story__col{padding-top:22px;border-top:2px solid var(--indigo)}
 .fd-story__col:nth-child(even){border-top-color:var(--lime-deep)}
-.fd-story__col p{color:var(--muted);line-height:1.85}
+.fd-story__col p{color:var(--muted);line-height:1.85;font-size:1rem;font-weight:500}
 
 /* ---- Highlights ---- */
 .fd-high{background:linear-gradient(180deg,var(--ivory),var(--cream));padding:clamp(52px,6.5vw,88px) 0}
@@ -44,12 +44,12 @@
 .fd-high__card:hover{transform:translateY(-6px);box-shadow:var(--shadow-soft)}
 .fd-high__card h4{font-size:1.16rem;margin-bottom:8px;color:var(--indigo-deep)}
 .fd-high__card:nth-child(even) h4{color:var(--lime-deep)}
-.fd-high__card p{font-size:.9rem;color:var(--muted);line-height:1.6}
+.fd-high__card p{font-size:.97rem;color:var(--muted);line-height:1.6;font-weight:500}
 
 /* ---- CTA ---- */
 .fd-cta{background:linear-gradient(165deg,#F1EDFC,#E7E1F9);text-align:center;padding:clamp(60px,8vw,100px) 0}
 .fd-cta__inner h2{font-size:clamp(2rem,4vw,2.9rem);margin-bottom:14px}
-.fd-cta__inner p{color:var(--muted);max-width:520px;margin:0 auto 28px}
+.fd-cta__inner p{color:var(--muted);max-width:520px;margin:0 auto 28px;font-size:1.05rem;font-weight:500}
 .fd-cta__actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 
 @media(max-width:900px){
